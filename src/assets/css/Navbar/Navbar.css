@@ -17,6 +17,12 @@
   cursor: pointer;
 }
 
+.navbar-logo > a {
+  color: inherit;
+  text-decoration: none;
+  font-size: inherit;
+}
+
 .menu-icon {
   display: none;
   font-size: 2.8rem;
