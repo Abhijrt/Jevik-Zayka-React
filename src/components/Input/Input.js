@@ -9,18 +9,29 @@ class Input extends Component {
     };
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (
+      this.state.inputActive === true &&
+      this.state.inputRef.current.value.length === 0
+    ) {
+      this.setState({ inputActive: false });
+      return;
+    }
+  }
+
   handleInputClick = () => {
     this.setState({
       inputActive: true,
     });
   };
 
-  handleOnChangeInner = () => {
+  handleOnChange = (e) => {
     if (this.state.inputRef.current.value.length === 0) {
       this.setState({ inputActive: false });
     } else {
       this.setState({ inputActive: true });
     }
+    this.props.handleOnChange(this.props.label, e.target.value);
   };
 
   handleOnPointerCancle = () => {
@@ -42,7 +53,7 @@ class Input extends Component {
             type={type}
             className={this.state.inputActive ? 'input-active' : ''}
             onClick={this.handleInputClick}
-            onChange={this.handleOnChangeInner}
+            onChange={this.handleOnChange}
             onMouseLeave={this.handleOnPointerCancle}
             ref={this.state.inputRef}
             required={required}
