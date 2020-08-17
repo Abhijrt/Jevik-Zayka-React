@@ -48,13 +48,13 @@
 
 .navigation-list {
   /* width: 100px; */
-  height: 102px;
+  height: 88px;
   /* border: 2px solid blue; */
 }
 
 .navigation-list > ul {
   margin: 0px 0px 0px 20px;
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 600;
   color: #616767;
 }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 // import Search from '../Search/Search';
 import '../../assets/css/Navbar/Navbar.css';
+import { Link } from 'react-router-dom';
 
 class Navbar extends Component {
   constructor(props) {
@@ -18,7 +19,7 @@ class Navbar extends Component {
     return (
       <nav className="navbar-container">
         <div className="navbar-logo">
-          <a href="/">Jaivik Zayka</a>
+          <Link to="/">Jaivik Zayka</Link>
         </div>
         <div className="menu-icon" onClick={this.handleMenuIconClick}>
           <i
@@ -38,29 +39,29 @@ class Navbar extends Component {
             <input></input>
           </li> */}
           <li>
-            <a className="navbar-links" href="/products">
+            <Link className="navbar-links" to="/">
               Products
-            </a>
+            </Link>
           </li>
           <li>
-            <a className="navbar-links" href="/sign-in">
+            <Link className="navbar-links" to="/signin">
               Sign In
-            </a>
+            </Link>
           </li>
           <li>
-            <a className="navbar-links" href="/sign-in">
-              Sign Out
-            </a>
+            <Link className="navbar-links" to="/signup">
+              Sign Up
+            </Link>
           </li>
           <li>
-            <a className="navbar-links" href="/sign-in">
-              Register
-            </a>
-          </li>
-          <li>
-            <a className="navbar-links" href="/contactus">
+            <Link className="navbar-links" to="/contact">
               Contact Us
-            </a>
+            </Link>
+          </li>
+          <li>
+            <Link className="navbar-links" to="/about">
+              About Us
+            </Link>
           </li>
         </ul>
       </nav>

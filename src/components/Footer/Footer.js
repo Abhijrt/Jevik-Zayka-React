@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../../assets/css/Footer/Footer.css';
+import { Link } from 'react-router-dom';
 
 class Footer extends Component {
   render() {
@@ -13,16 +14,16 @@ class Footer extends Component {
         <div className="navigation-list">
           <ul>
             <li>
-              <a href="/">Home</a>
+              <Link to="/">Home</Link>
             </li>
             <li>
-              <a href="/">Products</a>
+              <Link to="/">Products</Link>
             </li>
             <li>
-              <a href="/">Contact Us</a>
+              <Link to="/contact">Contact Us</Link>
             </li>
             <li>
-              <a href="/">About Us</a>
+              <Link to="/about">About Us</Link>
             </li>
           </ul>
         </div>
