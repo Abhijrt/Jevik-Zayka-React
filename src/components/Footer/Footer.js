@@ -6,8 +6,8 @@ class Footer extends Component {
     return (
       <div className="footer-container">
         <div className="social-icon-contaier">
-          <i class="fa fa-facebook" aria-hidden="true"></i>
-          <i class="fa fa-instagram" aria-hidden="true"></i>
+          <i className="fa fa-facebook" aria-hidden="true"></i>
+          <i className="fa fa-instagram" aria-hidden="true"></i>
         </div>
         <div className="separation-border"></div>
         <div className="navigation-list">
