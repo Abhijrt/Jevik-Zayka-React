@@ -27,6 +27,7 @@ class App extends Component {
             <Route component={Error404}></Route>
           </Switch>
           <Footer />
+          <div className="padded-div"></div>
         </div>
       </Router>
     );

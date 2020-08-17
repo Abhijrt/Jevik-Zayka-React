@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import '../../assets/css/Footer/Footer.css';
 import { Link } from 'react-router-dom';
+import '../../assets/css/common.css';
 
 class Footer extends Component {
   render() {
     return (
-      <div className="footer-container">
+      <div className="footer-container unselectable">
         <div className="social-icon-contaier">
           <i className="fa fa-facebook" aria-hidden="true"></i>
           <i className="fa fa-instagram" aria-hidden="true"></i>

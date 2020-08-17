@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 // import Search from '../Search/Search';
 import '../../assets/css/Navbar/Navbar.css';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import '../../assets/css/common.css';
 
 class Navbar extends Component {
   constructor(props) {
@@ -15,11 +17,18 @@ class Navbar extends Component {
     this.setState({ menuIconClicked: !this.state.menuIconClicked });
   };
 
+  handleButtonClick = () => {
+    this.setState({ menuIconClicked: false });
+  };
+
   render() {
+    const { isLoggedIn } = this.props.auth;
     return (
-      <nav className="navbar-container">
+      <nav className="navbar-container unselectable">
         <div className="navbar-logo">
-          <Link to="/">Jaivik Zayka</Link>
+          <Link to="/" onClick={this.handleButtonClick}>
+            Jaivik Zayka
+          </Link>
         </div>
         <div className="menu-icon" onClick={this.handleMenuIconClick}>
           <i
@@ -39,27 +48,62 @@ class Navbar extends Component {
             <input></input>
           </li> */}
           <li>
-            <Link className="navbar-links" to="/">
+            <Link
+              className="navbar-links"
+              to="/"
+              onClick={this.handleButtonClick}
+            >
               Products
             </Link>
           </li>
+          {isLoggedIn && (
+            <li>
+              <Link
+                className="navbar-links"
+                to="/"
+                onClick={this.handleButtonClick}
+              >
+                Signout
+              </Link>
+            </li>
+          )}
+          {!isLoggedIn && (
+            <li>
+              <Link
+                className="navbar-links"
+                to="/signin"
+                onClick={this.handleButtonClick}
+              >
+                Sign In
+              </Link>
+            </li>
+          )}
+          {!isLoggedIn && (
+            <li>
+              <Link
+                className="navbar-links"
+                to="/signup"
+                onClick={this.handleButtonClick}
+              >
+                Sign Up
+              </Link>
+            </li>
+          )}
           <li>
-            <Link className="navbar-links" to="/signin">
-              Sign In
-            </Link>
-          </li>
-          <li>
-            <Link className="navbar-links" to="/signup">
-              Sign Up
-            </Link>
-          </li>
-          <li>
-            <Link className="navbar-links" to="/contact">
+            <Link
+              className="navbar-links"
+              to="/contact"
+              onClick={this.handleButtonClick}
+            >
               Contact Us
             </Link>
           </li>
           <li>
-            <Link className="navbar-links" to="/about">
+            <Link
+              className="navbar-links"
+              to="/about"
+              onClick={this.handleButtonClick}
+            >
               About Us
             </Link>
           </li>
@@ -69,4 +113,10 @@ class Navbar extends Component {
   }
 }
 
-export default Navbar;
+function mapStateToProps(state) {
+  return {
+    auth: state.auth,
+  };
+}
+
+export default connect(mapStateToProps)(Navbar);

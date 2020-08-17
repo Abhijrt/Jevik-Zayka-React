@@ -1,4 +1,9 @@
 .App {
   position: relative;
   min-height: 100vh;
+  display: grid;
+}
+
+.padded-div {
+  height: 130px;
 }
