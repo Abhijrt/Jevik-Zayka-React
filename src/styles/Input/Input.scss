@@ -31,7 +31,7 @@ input {
   font-size: 1.2rem;
   font-weight: 700;
   text-indent: 0.75rem;
-  color: rgba(#fff, 0.875);
+  color: rgba(black, 0.875);
 }
 
 input:focus {
@@ -48,7 +48,7 @@ input:focus {
   outline: none;
 }
 .placeholder {
-  color: rgba(white, 0.875);
+  color: rgba(black, 0.875);
   position: absolute;
   z-index: 0;
   top: 0;

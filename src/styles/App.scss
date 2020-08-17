@@ -1,0 +1,18 @@
+.App {
+  position: relative;
+  min-height: 100vh;
+  display: grid;
+  flex-direction: column;
+}
+
+.padded-div {
+  height: 130px;
+}
+
+@import './common.scss';
+@import './Navbar/Navbar.scss';
+@import './Navbar/Button.scss';
+@import './Input/Input.scss';
+@import './Search/Search.scss';
+@import './SignIn/SignIn.scss';
+@import './Footer/Footer.scss';

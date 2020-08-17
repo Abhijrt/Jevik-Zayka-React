@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../assets/css/App.css';
+import '../styles/App.scss';
 // importing different component from component directory
 import { Home, Navbar, Footer, SignUp, SignIn, ContactUs, AboutUs } from './';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';

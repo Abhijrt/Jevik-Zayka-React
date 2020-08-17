@@ -1,6 +1,4 @@
 import React, { Component, createRef } from 'react';
-import '../../assets/css/common.css';
-import '../../assets/css/Input/Input.css';
 
 class Input extends Component {
   constructor(props) {
@@ -17,6 +15,14 @@ class Input extends Component {
     });
   };
 
+  handleOnChangeInner = () => {
+    if (this.state.inputRef.current.value.length === 0) {
+      this.setState({ inputActive: false });
+    } else {
+      this.setState({ inputActive: true });
+    }
+  };
+
   handleOnPointerCancle = () => {
     if (this.state.inputRef.current.value.length === 0) {
       this.setState({ inputActive: false });
@@ -24,7 +30,6 @@ class Input extends Component {
   };
 
   render() {
-    console.log(this.state.inputActive);
     const { width, label, type, required } = this.props;
     return (
       <div className="input-container" style={{ width: width }}>
@@ -37,6 +42,7 @@ class Input extends Component {
             type={type}
             className={this.state.inputActive ? 'input-active' : ''}
             onClick={this.handleInputClick}
+            onChange={this.handleOnChangeInner}
             onMouseLeave={this.handleOnPointerCancle}
             ref={this.state.inputRef}
             required={required}

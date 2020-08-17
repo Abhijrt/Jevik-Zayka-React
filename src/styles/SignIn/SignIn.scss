@@ -1,0 +1,61 @@
+.signin-container {
+  align-self: center;
+  width: 95%;
+  justify-self: center;
+  max-width: 525px;
+  height: 468px;
+  border-radius: 40px;
+  box-shadow: 0px 2px 8px 1px grey;
+  margin: 5px;
+
+  .heading {
+    text-align: center;
+    color: #555858;
+    font-size: 4rem;
+    margin-top: 20px;
+    font-weight: bolder;
+  }
+
+  form {
+    margin-top: -30px;
+  }
+
+  .submit {
+    text-align: center;
+    color: blue;
+    display: block;
+    height: 53px;
+
+    button {
+      font-size: 1.5rem;
+      margin-top: 2px;
+      padding: 1%;
+      font-weight: 600;
+      color: #00132f;
+      width: 65%;
+      border: 2px solid #049898;
+      background-image: linear-gradient(to right, #05b6ad, #1bbeb6, #0dcbd5);
+      border-radius: 14px;
+    }
+
+    button:focus {
+      border: none;
+      box-shadow: 0px 0px 0px 2px;
+      transition: 1s border-color ease-in-out;
+      outline: none;
+    }
+  }
+
+  .create-account {
+    text-align: center;
+    display: block;
+    font-size: 1rem;
+    padding: 21px;
+    font-weight: 700;
+    color: darkslateblue;
+  }
+
+  .create-account:hover {
+    color: black;
+  }
+}

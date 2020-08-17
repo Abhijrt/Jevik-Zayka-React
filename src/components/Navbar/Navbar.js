@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 // import Search from '../Search/Search';
-import '../../assets/css/Navbar/Navbar.css';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import '../../assets/css/common.css';
 
 class Navbar extends Component {
   constructor(props) {
