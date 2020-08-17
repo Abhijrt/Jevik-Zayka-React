@@ -53,7 +53,7 @@ class SignIn extends Component {
             value={this.state.password}
           />
           <div className="submit">
-            <button type="submit" onSubmit={this.handleSignIn}>
+            <button type="submit" onClick={this.handleSignIn}>
               Sign In
             </button>
           </div>
