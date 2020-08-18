@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import '../styles/App.scss';
 // importing different component from component directory
 import {
@@ -19,36 +20,19 @@ import Error404 from './Error/Error404';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      progress: true,
-    };
+    this.state = {};
   }
 
-  handleOnClick = () => {
-    this.setState({
-      progress: !this.state.progress,
-    });
-  };
-
+  // rendering main component based on different routes
   render() {
-    const { progress } = this.state;
+    const { isLoading } = this.props;
     return (
       <Router>
         <div className="App">
           <div className="blank-nav"></div>
           <Navbar />
           <div className="blank-progress-bar"></div>
-          {progress && <ProgressBar />}
-          <div
-            style={{
-              textAlign: 'center',
-              cursor: 'pointer',
-              fontSize: '1.5rem',
-            }}
-            onClick={this.handleOnClick}
-          >
-            Click here
-          </div>
+          {isLoading && <ProgressBar />}
           <Switch>
             <Route exact path="/" component={Home}></Route>
             <Route path="/signin" component={SignIn}></Route>
@@ -62,7 +46,6 @@ class App extends Component {
             ></Route>
             <Route component={Error404}></Route>
           </Switch>
-
           <Footer />
           <div className="padded-div"></div>
         </div>
@@ -71,4 +54,10 @@ class App extends Component {
   }
 }
 
-export default App;
+function mapStateToProps(state) {
+  return {
+    isLoading: state.progress.isLoading,
+  };
+}
+
+export default connect(mapStateToProps)(App);

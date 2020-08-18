@@ -1,6 +1,9 @@
 import React, { Component, createRef } from 'react';
 import { Input } from '../../components';
+import { connect } from 'react-redux';
+import { signIn, setErrorToNull } from '../../actions';
 import { Link } from 'react-router-dom';
+import swal from 'sweetalert';
 
 class SignIn extends Component {
   constructor(props) {
@@ -12,6 +15,19 @@ class SignIn extends Component {
     };
   }
 
+  componentDidUpdate() {
+    const { error, dispatch } = this.props;
+    if (error != null) {
+      swal({
+        title: 'Login Error',
+        text: error,
+        icon: 'warning',
+        button: 'Ok',
+      });
+      dispatch(setErrorToNull());
+    }
+  }
+
   handleOnChange = (label, value) => {
     if (label === 'Username') {
       this.setState({ username: value });
@@ -21,17 +37,33 @@ class SignIn extends Component {
     }
   };
 
+  swalMessageForFormInputControl = (field) => {
+    swal({
+      title: 'Missing Field',
+      text: `Please Enter ${field}`,
+      icon: 'warning',
+      button: 'Ok',
+    });
+  };
+
   handleSignIn = (e) => {
     e.preventDefault();
     const { username, password } = this.state;
-    if (username.length === 0 || password.length === 0) {
+    console.log('details', username, password);
+    if (username.length === 0) {
+      this.swalMessageForFormInputControl('Username');
+      return;
+    } else if (password.length === 0) {
+      this.swalMessageForFormInputControl('Password');
       return;
     }
+    this.props.dispatch(signIn(username, password));
     this.setState({ username: '', password: '' });
     this.state.formRef.current.reset();
   };
 
   render() {
+    const { isLoading } = this.props;
     return (
       <div className="signin-container">
         <div className="heading unselectable">Login</div>
@@ -53,17 +85,25 @@ class SignIn extends Component {
             value={this.state.password}
           />
           <div className="submit">
-            <button type="submit" onClick={this.handleSignIn}>
+            <button
+              type="submit"
+              onClick={this.handleSignIn}
+              disabled={isLoading}
+            >
               Sign In
             </button>
           </div>
-          <div className="create-account unselectable">
-            <Link to="/signup">Create An Account</Link>
-          </div>
         </form>
+        <div className="create-account unselectable">
+          <Link to="/signup">Create An Account</Link>
+        </div>
       </div>
     );
   }
 }
 
-export default SignIn;
+function mapStateToProps(state) {
+  return { isLoading: state.progress.isLoading, error: state.auth.error };
+}
+
+export default connect(mapStateToProps)(SignIn);

@@ -1,5 +1,6 @@
 .sign-up-container {
-  height: 789px;
+  height: 970px;
+  margin-top: 10px;
 
   //   for chorme, safari, opera and other
   input::-webkit-outer-spin-button,
@@ -11,5 +12,52 @@
   /* Firefox */
   input[type='number'] {
     -moz-appearance: textfield;
+  }
+
+  .create-account {
+    .login {
+      padding: 10px 100px;
+    }
+  }
+
+  .password-validator-container {
+    margin-top: -16px;
+    height: 149px;
+    margin-left: 61px;
+
+    .password-validator {
+      width: 51%;
+      border: 0.5px solid red;
+      padding: 1%;
+      margin: 1%;
+      border-radius: 10px;
+      font-weight: bold;
+      background-color: #f7f1f1;
+
+      i {
+        padding: 2px 10px 2px 10px;
+        color: #ec8767;
+      }
+    }
+
+    .password-validator-green {
+      border: 0.5px solid greenyellow;
+      background-color: #e2f0e5;
+      i {
+        color: green;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 535px) {
+  .sign-up-container {
+    height: 947px;
+  }
+}
+
+@media screen and (max-width: 470px) {
+  .sign-up-container {
+    height: 892px;
   }
 }

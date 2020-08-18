@@ -11,14 +11,18 @@ class Navbar extends Component {
     };
   }
 
+  // handle menu icon click
   handleMenuIconClick = () => {
     this.setState({ menuIconClicked: !this.state.menuIconClicked });
   };
 
+  // handling navbar items button click
+  // on small screen when we click a button then menu list should be hidden
   handleButtonClick = () => {
     this.setState({ menuIconClicked: false });
   };
 
+  // rendering navbar component
   render() {
     const { isLoggedIn } = this.props.auth;
     return (
@@ -111,6 +115,7 @@ class Navbar extends Component {
   }
 }
 
+// passing store props to component
 function mapStateToProps(state) {
   return {
     auth: state.auth,

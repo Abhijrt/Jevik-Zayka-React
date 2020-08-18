@@ -10,6 +10,7 @@ import Error404 from './Error/Error404';
 import Home from './Home/Home';
 import ProgressBar from './ProgressBar/ProgressBar';
 
+//exporting all the components from here
 export {
   Home,
   Navbar,
