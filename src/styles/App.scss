@@ -1,12 +1,16 @@
 .App {
   position: relative;
   min-height: 100vh;
-  display: grid;
+  display: flex;
   flex-direction: column;
 }
 
 .padded-div {
   height: 130px;
+}
+
+.blank-progress-bar {
+  height: 4px;
 }
 
 @import './common.scss';
@@ -17,3 +21,4 @@
 @import './SignIn/SignIn.scss';
 @import './Footer/Footer.scss';
 @import './SignUp/SignUp.scss';
+@import './ProgressBar/ProgressBar.scss';

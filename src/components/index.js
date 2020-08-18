@@ -8,6 +8,7 @@ import SignIn from './SignIn/SignIn';
 import SignUp from './SignUp/SignUp';
 import Error404 from './Error/Error404';
 import Home from './Home/Home';
+import ProgressBar from './ProgressBar/ProgressBar';
 
 export {
   Home,
@@ -20,4 +21,5 @@ export {
   SignIn,
   SignUp,
   Error404,
+  ProgressBar,
 };
