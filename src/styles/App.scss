@@ -3,14 +3,18 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-}
 
-.padded-div {
-  height: 130px;
-}
+  .padded-div {
+    height: 130px;
+  }
 
-.blank-progress-bar {
-  height: 4px;
+  .blank-progress-bar {
+    height: 4px;
+  }
+
+  .blank-nav {
+    height: 65px;
+  }
 }
 
 @import './common.scss';

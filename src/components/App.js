@@ -35,12 +35,10 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
+          <div className="blank-nav"></div>
           <Navbar />
-          {progress ? (
-            <div className="blank-progress-bar"></div>
-          ) : (
-            <ProgressBar />
-          )}
+          <div className="blank-progress-bar"></div>
+          {progress && <ProgressBar />}
           <div
             style={{
               textAlign: 'center',
