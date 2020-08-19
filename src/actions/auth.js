@@ -9,11 +9,12 @@ import {
 } from './actionTypes';
 
 // action creator when sign in is successed
-function signInSuccess(user, isAdmin) {
+function signInSuccess(user, isAdmin, isVerified) {
   return {
     type: SIGNIN_SUCCESS,
     user,
     isAdmin,
+    isVerified,
   };
 }
 
@@ -57,7 +58,13 @@ export function signIn(username, password) {
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
-          dispatch(signInSuccess(data.data.user, data.data.user.is_admin));
+          dispatch(
+            signInSuccess(
+              data.data.user,
+              data.data.user.is_admin,
+              data.data.user.is_verified
+            )
+          );
           setToken(data.data.token);
         } else {
           dispatch(signInFailed(data.message));

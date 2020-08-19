@@ -9,6 +9,8 @@ import SignUp from './SignUp/SignUp';
 import Error404 from './Error/Error404';
 import Home from './Home/Home';
 import ProgressBar from './ProgressBar/ProgressBar';
+import { PrivateRoute, AdminRoute } from './RouteValidator';
+import Verification from './Verification/Verification';
 
 //exporting all the components from here
 export {
@@ -23,4 +25,7 @@ export {
   SignUp,
   Error404,
   ProgressBar,
+  Verification,
+  PrivateRoute,
+  AdminRoute,
 };

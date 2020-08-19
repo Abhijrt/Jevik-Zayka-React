@@ -194,7 +194,10 @@ class SignUp extends Component {
       number,
       lengthCheck,
     } = this.state.validation_status;
-    const { message } = this.props;
+    const { message, isLoggedIn } = this.props;
+    if (isLoggedIn === true) {
+      return <Redirect to="/" />;
+    }
     if (message != null) {
       return <Redirect to="/signin" />;
     }
@@ -342,6 +345,7 @@ function mapStateToProps(state) {
   return {
     message: state.auth.message,
     error: state.auth.error,
+    isLoggedIn: state.auth.isLoggedIn,
   };
 }
 

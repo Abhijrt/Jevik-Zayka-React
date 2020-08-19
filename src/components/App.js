@@ -11,9 +11,12 @@ import {
   ContactUs,
   AboutUs,
   ProgressBar,
+  PrivateRoute,
+  Verification,
 } from './';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Error404 from './Error/Error404';
+import { getToken } from '../helpers';
 
 //rendering app component
 //using router to perform routing
@@ -21,6 +24,12 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {};
+  }
+
+  // setting up the user if user already logged in and token present in local storage
+  componentDidMount() {
+    let token = getToken();
+    console.log(token);
   }
 
   // rendering main component based on different routes
@@ -37,7 +46,8 @@ class App extends Component {
             <Route exact path="/" component={Home}></Route>
             <Route path="/signin" component={SignIn}></Route>
             <Route path="/signup" component={SignUp}></Route>
-            <Route path="/contact" component={ContactUs}></Route>
+            <PrivateRoute path="/contact" component={ContactUs} />
+            <Route path="/verification" component={Verification} />
             <Route
               path="/about"
               render={(props) => {

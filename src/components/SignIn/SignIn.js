@@ -2,7 +2,7 @@ import React, { Component, createRef } from 'react';
 import { Input } from '../../components';
 import { connect } from 'react-redux';
 import { signIn, setErrorToNull, setMessageToNull } from '../../actions';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import swal from 'sweetalert';
 
 class SignIn extends Component {
@@ -72,7 +72,10 @@ class SignIn extends Component {
   };
 
   render() {
-    const { isLoading } = this.props;
+    const { isLoading, isLoggedIn } = this.props;
+    if (isLoggedIn === true) {
+      return <Redirect to="/" />;
+    }
     return (
       <div className="signin-container">
         <div className="heading unselectable">Login</div>
@@ -116,6 +119,7 @@ function mapStateToProps(state) {
     isLoading: state.progress.isLoading,
     error: state.auth.error,
     message: state.auth.message,
+    isLoggedIn: state.auth.isLoggedIn,
   };
 }
 

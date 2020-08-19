@@ -12,6 +12,7 @@ const initialState = {
   error: null,
   isAdmin: false,
   isLoggedIn: false,
+  isVerified: false,
   message: null,
 };
 
@@ -23,6 +24,7 @@ export default function auth(state = initialState, action) {
         ...state,
         user: action.user,
         isAdmin: action.isAdmin,
+        isVerified: action.isVerified,
         isLoggedIn: true,
       };
     }
