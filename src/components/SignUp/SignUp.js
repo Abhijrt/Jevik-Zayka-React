@@ -1,17 +1,20 @@
 import React, { Component, createRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { Input } from '../../components';
 import swal from 'sweetalert';
+import { connect } from 'react-redux';
+import { setErrorToNull, signUp } from '../../actions';
 
 class SignUp extends Component {
   constructor(props) {
     super(props);
     this.state = {
       email: '',
-      name: '',
+      firstName: '',
+      lastName: '',
       password: '',
       confirm_password: '',
-      phone: '',
+      mobileNumber: '',
       validation_status: {
         capitalLetter: false,
         smallLetter: false,
@@ -21,6 +24,20 @@ class SignUp extends Component {
       },
       formRef: createRef(),
     };
+  }
+
+  componentDidUpdate() {
+    const { error, dispatch, message } = this.props;
+    console.log(error, message, 'mes');
+    if (error != null) {
+      swal({
+        title: 'Registration Error',
+        text: error,
+        icon: 'warning',
+        button: 'Ok',
+      });
+      dispatch(setErrorToNull());
+    }
   }
 
   // checking for password validation in password input
@@ -60,8 +77,10 @@ class SignUp extends Component {
   handleOnChange = (label, value) => {
     if (label === 'Email') {
       this.setState({ email: value });
-    } else if (label === 'Name') {
-      this.setState({ name: value });
+    } else if (label === 'First Name') {
+      this.setState({ firstName: value });
+    } else if (label === 'Last Name') {
+      this.setState({ lastName: value });
     } else if (label === 'Password') {
       this.setState({
         password: value,
@@ -70,7 +89,7 @@ class SignUp extends Component {
     } else if (label === 'Confirm Password') {
       this.setState({ confirm_password: value });
     } else if (label === 'Mobile Number') {
-      this.setState({ phone: value });
+      this.setState({ mobileNumber: value });
     }
   };
 
@@ -87,13 +106,23 @@ class SignUp extends Component {
   // handling form submission for sign up button
   handleSignUp = (e) => {
     e.preventDefault();
-    const { email, name, password, confirm_password, phone } = this.state;
+    const { dispatch } = this.props;
+    const {
+      email,
+      firstName,
+      lastName,
+      password,
+      confirm_password,
+      mobileNumber,
+    } = this.state;
     if (email.length === 0) {
       this.swalMessage('Missing Field', 'Email');
       return;
-    } else if (name.length === 0) {
-      this.swalMessage('Missing Field', 'Name');
+    } else if (firstName.length === 0) {
+      this.swalMessage('Missing Field', 'First Name');
       return;
+    } else if (lastName.length === 0) {
+      this.swalMessage('Missing Field', 'Last Name');
     } else if (password.length === 0) {
       this.swalMessage('Missing Field', 'Password');
       return;
@@ -104,7 +133,7 @@ class SignUp extends Component {
         this.swalMessage('Invalid Password', 'Right Passwords');
       }
       return;
-    } else if (phone.length === 0) {
+    } else if (mobileNumber.length === 0) {
       this.swalMessage('Missing Field', 'Mobile Number');
       return;
     }
@@ -127,12 +156,24 @@ class SignUp extends Component {
       this.swalMessage('Invalid Password', 'Valid Password');
     }
 
+    dispatch(
+      signUp(
+        email,
+        firstName,
+        lastName,
+        password,
+        confirm_password,
+        mobileNumber
+      )
+    );
+
     this.setState({
       email: '',
-      name: '',
+      firstName: '',
+      lastName: '',
       password: '',
       confirm_password: '',
-      phone: '',
+      mobileNumber: '',
       validation_status: {
         capitalLetter: false,
         smallLetter: false,
@@ -153,6 +194,10 @@ class SignUp extends Component {
       number,
       lengthCheck,
     } = this.state.validation_status;
+    const { message } = this.props;
+    if (message != null) {
+      return <Redirect to="/signin" />;
+    }
     return (
       <div className="signin-container sign-up-container">
         <div className="heading unselectable">Register</div>
@@ -168,7 +213,15 @@ class SignUp extends Component {
           <Input
             width="90%"
             type="text"
-            label="Name"
+            label="First Name"
+            required={true}
+            handleOnChange={this.handleOnChange}
+            value={this.state.Name}
+          />
+          <Input
+            width="90%"
+            type="text"
+            label="Last Name"
             required={true}
             handleOnChange={this.handleOnChange}
             value={this.state.Name}
@@ -190,9 +243,9 @@ class SignUp extends Component {
               }
             >
               {capitalLetter ? (
-                <i class="fa fa-check" aria-hidden="true"></i>
+                <i className="fa fa-check" aria-hidden="true"></i>
               ) : (
-                <i class="fa fa-times" aria-hidden="true"></i>
+                <i className="fa fa-times" aria-hidden="true"></i>
               )}
               Capital Letter
             </div>
@@ -204,9 +257,9 @@ class SignUp extends Component {
               }
             >
               {smallLetter ? (
-                <i class="fa fa-check" aria-hidden="true"></i>
+                <i className="fa fa-check" aria-hidden="true"></i>
               ) : (
-                <i class="fa fa-times" aria-hidden="true"></i>
+                <i className="fa fa-times" aria-hidden="true"></i>
               )}
               Small Letter
             </div>
@@ -218,9 +271,9 @@ class SignUp extends Component {
               }
             >
               {specialCharacter ? (
-                <i class="fa fa-check" aria-hidden="true"></i>
+                <i className="fa fa-check" aria-hidden="true"></i>
               ) : (
-                <i class="fa fa-times" aria-hidden="true"></i>
+                <i className="fa fa-times" aria-hidden="true"></i>
               )}
               Special Character
             </div>
@@ -232,9 +285,9 @@ class SignUp extends Component {
               }
             >
               {number ? (
-                <i class="fa fa-check" aria-hidden="true"></i>
+                <i className="fa fa-check" aria-hidden="true"></i>
               ) : (
-                <i class="fa fa-times" aria-hidden="true"></i>
+                <i className="fa fa-times" aria-hidden="true"></i>
               )}
               Number
             </div>
@@ -246,9 +299,9 @@ class SignUp extends Component {
               }
             >
               {lengthCheck ? (
-                <i class="fa fa-check" aria-hidden="true"></i>
+                <i className="fa fa-check" aria-hidden="true"></i>
               ) : (
-                <i class="fa fa-times" aria-hidden="true"></i>
+                <i className="fa fa-times" aria-hidden="true"></i>
               )}
               Length Greater then 6
             </div>
@@ -267,7 +320,7 @@ class SignUp extends Component {
             label="Mobile Number"
             required={true}
             handleOnChange={this.handleOnChange}
-            value={this.state.Phone}
+            value={this.state.mobileNumber}
           />
           <div className="submit">
             <button type="submit" onClick={this.handleSignUp}>
@@ -285,4 +338,11 @@ class SignUp extends Component {
   }
 }
 
-export default SignUp;
+function mapStateToProps(state) {
+  return {
+    message: state.auth.message,
+    error: state.auth.error,
+  };
+}
+
+export default connect(mapStateToProps)(SignUp);

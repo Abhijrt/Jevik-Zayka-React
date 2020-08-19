@@ -2,6 +2,8 @@ import {
   SIGNIN_SUCCESS,
   SIGNIN_FAILED,
   SET_ERROR_NULL,
+  SET_MESSAGE,
+  SET_MESSAGE_TO_NULL,
 } from '../actions/actionTypes';
 
 // auth reducer intial state to maintain authentication status
@@ -10,6 +12,7 @@ const initialState = {
   error: null,
   isAdmin: false,
   isLoggedIn: false,
+  message: null,
 };
 
 // changing store on the basis of different actions
@@ -41,6 +44,19 @@ export default function auth(state = initialState, action) {
       };
     }
 
+    case SET_MESSAGE: {
+      return {
+        ...state,
+        message: action.message,
+      };
+    }
+
+    case SET_MESSAGE_TO_NULL: {
+      return {
+        ...state,
+        message: null,
+      };
+    }
     default:
       return state;
   }

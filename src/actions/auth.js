@@ -1,6 +1,12 @@
 import { APIUrls, getFormBody, setToken } from '../helpers';
 import { loadingStart, loadingStop } from './progress';
-import { SIGNIN_SUCCESS, SIGNIN_FAILED, SET_ERROR_NULL } from './actionTypes';
+import {
+  SIGNIN_SUCCESS,
+  SIGNIN_FAILED,
+  SET_ERROR_NULL,
+  SET_MESSAGE,
+  SET_MESSAGE_TO_NULL,
+} from './actionTypes';
 
 // action creator when sign in is successed
 function signInSuccess(user, isAdmin) {
@@ -26,6 +32,16 @@ export function setErrorToNull() {
   };
 }
 
+export function setMessage(message) {
+  return { type: SET_MESSAGE, message };
+}
+
+export function setMessageToNull() {
+  return {
+    type: SET_MESSAGE_TO_NULL,
+  };
+}
+
 // function to make request to API for login
 export function signIn(username, password) {
   return (dispatch) => {
@@ -43,6 +59,44 @@ export function signIn(username, password) {
         if (data.success) {
           dispatch(signInSuccess(data.data.user, data.data.user.is_admin));
           setToken(data.data.token);
+        } else {
+          dispatch(signInFailed(data.message));
+        }
+        dispatch(loadingStop());
+      });
+  };
+}
+
+// function to make request to API for create user
+export function signUp(
+  email,
+  firstName,
+  lastName,
+  password,
+  confirmPassword,
+  mobileNumber
+) {
+  return (dispatch) => {
+    dispatch(loadingStart());
+    const url = APIUrls.signup();
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: getFormBody({
+        email,
+        firstName,
+        lastName,
+        password,
+        confirmPassword,
+        mobileNumber,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          dispatch(setMessage('Registration Successful'));
         } else {
           dispatch(signInFailed(data.message));
         }

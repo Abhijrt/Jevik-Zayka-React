@@ -1,4 +1,18 @@
-import { signIn, setErrorToNull } from './auth';
+import {
+  signIn,
+  setErrorToNull,
+  setMessage,
+  setMessageToNull,
+  signUp,
+} from './auth';
 import { loadingStart, loadingStop } from './progress';
 
-export { signIn, loadingStart, loadingStop, setErrorToNull };
+export {
+  signIn,
+  loadingStart,
+  loadingStop,
+  setErrorToNull,
+  signUp,
+  setMessage,
+  setMessageToNull,
+};

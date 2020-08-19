@@ -1,7 +1,7 @@
 import React, { Component, createRef } from 'react';
 import { Input } from '../../components';
 import { connect } from 'react-redux';
-import { signIn, setErrorToNull } from '../../actions';
+import { signIn, setErrorToNull, setMessageToNull } from '../../actions';
 import { Link } from 'react-router-dom';
 import swal from 'sweetalert';
 
@@ -16,7 +16,7 @@ class SignIn extends Component {
   }
 
   componentDidUpdate() {
-    const { error, dispatch } = this.props;
+    const { error, dispatch, message } = this.props;
     if (error != null) {
       swal({
         title: 'Login Error',
@@ -25,6 +25,15 @@ class SignIn extends Component {
         button: 'Ok',
       });
       dispatch(setErrorToNull());
+    }
+    if (message != null) {
+      swal({
+        title: message,
+        text: 'Please Continue to Login',
+        icon: 'success',
+        button: 'Ok',
+      });
+      dispatch(setMessageToNull());
     }
   }
 
@@ -103,7 +112,11 @@ class SignIn extends Component {
 }
 
 function mapStateToProps(state) {
-  return { isLoading: state.progress.isLoading, error: state.auth.error };
+  return {
+    isLoading: state.progress.isLoading,
+    error: state.auth.error,
+    message: state.auth.message,
+  };
 }
 
 export default connect(mapStateToProps)(SignIn);
