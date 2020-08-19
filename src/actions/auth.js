@@ -6,6 +6,7 @@ import {
   SET_ERROR_NULL,
   SET_MESSAGE,
   SET_MESSAGE_TO_NULL,
+  SIGNOUT,
 } from './actionTypes';
 
 // action creator when sign in is successed
@@ -71,6 +72,13 @@ export function signIn(username, password) {
         }
         dispatch(loadingStop());
       });
+  };
+}
+
+// function to signout user
+export function signOut() {
+  return {
+    type: SIGNOUT,
   };
 }
 

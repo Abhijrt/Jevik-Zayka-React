@@ -21,3 +21,8 @@ export function setToken(token) {
 export function getToken() {
   return localStorage.getItem('jaivik_token');
 }
+
+export function removeToken() {
+  localStorage.removeItem('jaivik_token');
+  return;
+}

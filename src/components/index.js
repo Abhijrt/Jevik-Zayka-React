@@ -11,6 +11,8 @@ import Home from './Home/Home';
 import ProgressBar from './ProgressBar/ProgressBar';
 import { PrivateRoute, AdminRoute } from './RouteValidator';
 import Verification from './Verification/Verification';
+import Profile from './Profile/Profile';
+import Cart from './Cart/Cart';
 
 //exporting all the components from here
 export {
@@ -28,4 +30,6 @@ export {
   Verification,
   PrivateRoute,
   AdminRoute,
+  Cart,
+  Profile,
 };

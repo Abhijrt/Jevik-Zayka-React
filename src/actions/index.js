@@ -5,6 +5,7 @@ import {
   setMessage,
   setMessageToNull,
   signUp,
+  signOut,
 } from './auth';
 import { loadingStart, loadingStop } from './progress';
 
@@ -17,4 +18,5 @@ export {
   setMessage,
   setMessageToNull,
   signInSuccess,
+  signOut,
 };

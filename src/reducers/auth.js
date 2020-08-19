@@ -4,6 +4,7 @@ import {
   SET_ERROR_NULL,
   SET_MESSAGE,
   SET_MESSAGE_TO_NULL,
+  SIGNOUT,
 } from '../actions/actionTypes';
 
 // auth reducer intial state to maintain authentication status
@@ -34,8 +35,20 @@ export default function auth(state = initialState, action) {
         ...state,
         error: action.error,
         isLoggedIn: false,
-        isAdmin: 'ddd',
-        user: null,
+        isAdmin: false,
+        isVerified: false,
+        user: {},
+      };
+    }
+
+    case SIGNOUT: {
+      return {
+        ...state,
+        user: {},
+        isLoggedIn: false,
+        error: null,
+        isAdmin: false,
+        isVerified: false,
       };
     }
 

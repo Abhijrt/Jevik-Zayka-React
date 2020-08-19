@@ -11,7 +11,12 @@ class Verification extends Component {
     if (isVerified === true) {
       return <Redirect to="/" />;
     }
-    return <div>Verification</div>;
+    return (
+      <div>
+        Verification
+        <button>Click here to Send Verification mail</button>
+      </div>
+    );
   }
 }
 

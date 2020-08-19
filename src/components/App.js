@@ -14,6 +14,8 @@ import {
   ProgressBar,
   PrivateRoute,
   Verification,
+  Cart,
+  Profile,
 } from './';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { signInSuccess } from '../actions';
@@ -31,8 +33,12 @@ class App extends Component {
   // setting up the user if user already logged in and token present in local storage
   componentDidMount() {
     const { dispatch } = this.props;
-    let token = jwtDecode(getToken());
-    dispatch(signInSuccess(token, token.is_admin, token.is_verified));
+    let token = getToken();
+    if (token) {
+      console.log(token);
+      token = jwtDecode(token);
+      dispatch(signInSuccess(token, token.is_admin, token.is_verified));
+    }
   }
 
   // rendering main component based on different routes
@@ -49,7 +55,9 @@ class App extends Component {
             <Route exact path="/" component={Home}></Route>
             <Route path="/signin" component={SignIn}></Route>
             <Route path="/signup" component={SignUp}></Route>
-            <PrivateRoute path="/contact" component={ContactUs} />
+            <PrivateRoute path="/profile" component={Profile} />
+            <PrivateRoute path="/cart" component={Cart} />
+            <Route path="/contact" component={ContactUs} />
             <Route path="/verification" component={Verification} />
             <Route
               path="/about"

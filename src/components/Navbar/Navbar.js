@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 // import Search from '../Search/Search';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { removeToken, getToken } from '../../helpers';
+import { signOut } from '../../actions';
 
 class Navbar extends Component {
   constructor(props) {
@@ -20,6 +22,14 @@ class Navbar extends Component {
   // on small screen when we click a button then menu list should be hidden
   handleButtonClick = () => {
     this.setState({ menuIconClicked: false });
+  };
+
+  // loggin out
+  handleSignOut = () => {
+    console.log('working');
+    removeToken();
+    this.props.dispatch(signOut());
+    console.log(getToken());
   };
 
   // rendering navbar component
@@ -47,9 +57,11 @@ class Navbar extends Component {
             this.state.menuIconClicked ? 'navbar-menu active' : 'navbar-menu'
           }
         >
-          <li>
-            <Link className="navbar-links user-name">Hi, {first_name}</Link>
-          </li>
+          {isLoggedIn && (
+            <li>
+              <span className="navbar-links user-name">Hi, {first_name}</span>
+            </li>
+          )}
           <li>
             <Link
               className="navbar-links"
@@ -59,24 +71,46 @@ class Navbar extends Component {
               Products
             </Link>
           </li>
+
           {isLoggedIn && (
             <li>
               <Link
                 className="navbar-links"
-                to="/"
+                to="/profile"
                 onClick={this.handleButtonClick}
               >
-                Sign Out
+                Profile
               </Link>
             </li>
           )}
-          {!isLoggedIn && (
+          {isLoggedIn && (
             <li>
               <Link
                 className="navbar-links"
-                to="/signin"
+                to="/cart"
                 onClick={this.handleButtonClick}
               >
+                Cart
+              </Link>
+            </li>
+          )}
+          {isLoggedIn && (
+            <li>
+              <span
+                className="navbar-links"
+                onClick={() => {
+                  this.handleButtonClick();
+                  this.handleSignOut();
+                }}
+              >
+                Sign Out
+              </span>
+            </li>
+          )}
+
+          {!isLoggedIn && (
+            <li>
+              <Link className="navbar-links" to="/signin">
                 Sign In
               </Link>
             </li>

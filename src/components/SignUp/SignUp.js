@@ -27,8 +27,7 @@ class SignUp extends Component {
   }
 
   componentDidUpdate() {
-    const { error, dispatch, message } = this.props;
-    console.log(error, message, 'mes');
+    const { error, dispatch } = this.props;
     if (error != null) {
       swal({
         title: 'Registration Error',

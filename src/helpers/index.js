@@ -1,4 +1,4 @@
 import { APIUrls } from './urls';
-import { getFormBody, setToken, getToken } from './utils';
+import { getFormBody, setToken, getToken, removeToken } from './utils';
 
-export { APIUrls, getFormBody, setToken, getToken };
+export { APIUrls, getFormBody, setToken, getToken, removeToken };
