@@ -1,5 +1,6 @@
 import {
   signIn,
+  signInSuccess,
   setErrorToNull,
   setMessage,
   setMessageToNull,
@@ -15,4 +16,5 @@ export {
   signUp,
   setMessage,
   setMessageToNull,
+  signInSuccess,
 };

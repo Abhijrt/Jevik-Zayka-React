@@ -57,6 +57,11 @@
     box-shadow: 0px 1px 10px 2px #0fb3c6;
     cursor: pointer;
   }
+
+  .user-name:hover {
+    cursor: default;
+    background: transparent;
+  }
 }
 
 @media screen and (max-width: 960px) {
@@ -94,6 +99,9 @@
     .navbar-links:hover {
       background: #01d5d5;
       border-radius: 0;
+    }
+    .user-name {
+      display: none;
     }
 
     .navbar-logo {

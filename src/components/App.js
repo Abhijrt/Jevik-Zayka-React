@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import * as jwtDecode from 'jwt-decode';
 import '../styles/App.scss';
 // importing different component from component directory
 import {
@@ -15,6 +16,7 @@ import {
   Verification,
 } from './';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { signInSuccess } from '../actions';
 import Error404 from './Error/Error404';
 import { getToken } from '../helpers';
 
@@ -28,8 +30,9 @@ class App extends Component {
 
   // setting up the user if user already logged in and token present in local storage
   componentDidMount() {
-    let token = getToken();
-    console.log(token);
+    const { dispatch } = this.props;
+    let token = jwtDecode(getToken());
+    dispatch(signInSuccess(token, token.is_admin, token.is_verified));
   }
 
   // rendering main component based on different routes

@@ -25,6 +25,7 @@ class Navbar extends Component {
   // rendering navbar component
   render() {
     const { isLoggedIn } = this.props.auth;
+    const { first_name } = this.props.auth.user;
     return (
       <nav className="navbar-container unselectable">
         <div className="navbar-logo">
@@ -46,9 +47,9 @@ class Navbar extends Component {
             this.state.menuIconClicked ? 'navbar-menu active' : 'navbar-menu'
           }
         >
-          {/* <li>
-            <input></input>
-          </li> */}
+          <li>
+            <Link className="navbar-links user-name">Hi, {first_name}</Link>
+          </li>
           <li>
             <Link
               className="navbar-links"
@@ -65,7 +66,7 @@ class Navbar extends Component {
                 to="/"
                 onClick={this.handleButtonClick}
               >
-                Signout
+                Sign Out
               </Link>
             </li>
           )}
@@ -91,7 +92,7 @@ class Navbar extends Component {
               </Link>
             </li>
           )}
-          <li>
+          {/* <li>
             <Link
               className="navbar-links"
               to="/contact"
@@ -108,7 +109,7 @@ class Navbar extends Component {
             >
               About Us
             </Link>
-          </li>
+          </li> */}
         </ul>
       </nav>
     );

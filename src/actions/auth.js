@@ -9,7 +9,7 @@ import {
 } from './actionTypes';
 
 // action creator when sign in is successed
-function signInSuccess(user, isAdmin, isVerified) {
+export function signInSuccess(user, isAdmin, isVerified) {
   return {
     type: SIGNIN_SUCCESS,
     user,
