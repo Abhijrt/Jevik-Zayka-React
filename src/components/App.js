@@ -18,6 +18,7 @@ import {
   Profile,
   AdminRoute,
   VerifyEmail,
+  ForgetPassword,
 } from './';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { signInSuccess, clearError, clearMessage } from '../actions';
@@ -73,6 +74,7 @@ class App extends Component {
               <AdminRoute path="/cart" component={Cart} />
               <Route path="/contact" component={ContactUs} />
               <Route path="/verification" component={Verification} />
+              <Route path="/forgetpassword" component={ForgetPassword} />
               <Route
                 path="/verifyemail/:verification_token"
                 component={VerifyEmail}

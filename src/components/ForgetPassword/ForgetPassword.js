@@ -1,5 +1,7 @@
 import React, { Component, createRef } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { Input } from '../../components';
 
 class ForgetPassword extends Component {
   constructor(props) {
@@ -19,8 +21,10 @@ class ForgetPassword extends Component {
   render() {
     const { isLoading } = this.props;
     return (
-      <div className="signin-container">
-        <div className="heading unselectable">Login</div>
+      <div className="signin-container forget-password-container">
+        <div className="heading unselectable" style={{ fontSize: '2rem' }}>
+          Forget Password
+        </div>
         <form ref={this.state.formRef}>
           <Input
             width="90%"
@@ -32,12 +36,12 @@ class ForgetPassword extends Component {
           />
           <div className="submit">
             <button type="submit" disabled={isLoading}>
-              Sign In
+              Send Mail
             </button>
           </div>
         </form>
-        <div className="create-account unselectable">
-          <Link to="/signup">Create An Account</Link>
+        <div className="create-account unselectable login">
+          <Link to="/signin">Login</Link>
         </div>
       </div>
     );

@@ -13,6 +13,7 @@ import { PrivateRoute, AdminRoute } from './RouteValidator';
 import Verification from './Verification/Verification';
 import VerifyEmail from './Verification/VerifyEmail';
 import Profile from './Profile/Profile';
+import ForgetPassword from './ForgetPassword/ForgetPassword';
 import Cart from './Cart/Cart';
 
 //exporting all the components from here
@@ -34,4 +35,5 @@ export {
   Cart,
   Profile,
   VerifyEmail,
+  ForgetPassword,
 };

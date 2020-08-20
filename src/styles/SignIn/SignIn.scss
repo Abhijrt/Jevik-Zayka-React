@@ -69,12 +69,18 @@
   .create-account:hover {
     color: black;
   }
+
+  .forget-password {
+    text-align: center;
+    color: black;
+    font-weight: bold;
+  }
 }
 
 @media screen and (max-width: 535px) {
   .signin-container {
-    height: 456px;
-    margin-top: 60px;
+    height: 471px;
+    margin-top: 24px;
     form {
       margin-top: 23px;
     }
