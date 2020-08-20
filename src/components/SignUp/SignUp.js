@@ -2,8 +2,8 @@ import React, { Component, createRef } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { Input } from '../../components';
 import { connect } from 'react-redux';
-import { clearError, signUp } from '../../actions';
-import { missingFieldAlert, errorMessageAlert } from '../../helpers';
+import { signUp } from '../../actions';
+import { missingFieldAlert } from '../../helpers';
 
 class SignUp extends Component {
   constructor(props) {
@@ -26,14 +26,14 @@ class SignUp extends Component {
     };
   }
 
-  componentDidUpdate() {
-    const { error, dispatch } = this.props;
+  // componentDidUpdate() {
+  //   const { error, dispatch } = this.props;
 
-    if (error != null) {
-      errorMessageAlert('Registration Error', error);
-      dispatch(clearError());
-    }
-  }
+  //   if (error != null) {
+  //     errorMessageAlert('Registration Error', error);
+  //     dispatch(clearError());
+  //   }
+  // }
 
   // checking for password validation in password input
   checkValidation = (value) => {

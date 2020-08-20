@@ -1,14 +1,10 @@
 import React, { Component, createRef } from 'react';
 import { Input } from '../../components';
 import { connect } from 'react-redux';
-import { signIn, clearMessage, clearError } from '../../actions';
+import { signIn } from '../../actions';
 import { Link, Redirect } from 'react-router-dom';
 import swal from 'sweetalert';
-import {
-  errorMessageAlert,
-  missingFieldAlert,
-  successMessageAlert,
-} from '../../helpers';
+import { missingFieldAlert } from '../../helpers';
 
 class SignIn extends Component {
   constructor(props) {
@@ -20,17 +16,17 @@ class SignIn extends Component {
     };
   }
 
-  componentDidUpdate() {
-    const { error, dispatch, message } = this.props;
-    if (error != null) {
-      errorMessageAlert('Login Error', error);
-      dispatch(clearError());
-    }
-    if (message != null) {
-      successMessageAlert(message, 'Please Login to Continue');
-      dispatch(clearMessage());
-    }
-  }
+  // componentDidUpdate() {
+  //   const { error, dispatch, message } = this.props;
+  //   if (error != null) {
+  //     errorMessageAlert('Error', error);
+  //     dispatch(clearError());
+  //   }
+  //   if (message != null) {
+  //     successMessageAlert(message, 'Please Login to Continue');
+  //     dispatch(clearMessage());
+  //   }
+  // }
 
   handleOnChange = (label, value) => {
     if (label === 'Email or Mobile Number') {

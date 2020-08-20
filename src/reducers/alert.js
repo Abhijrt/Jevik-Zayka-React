@@ -17,7 +17,7 @@ export default function auth(state = initialState, action) {
     case SET_MESSAGE:
       return {
         ...state,
-        message: action.message,
+        message: { title: action.title, detail: action.detail },
       };
     case CLEAR_MESSAGE:
       return {
@@ -27,7 +27,7 @@ export default function auth(state = initialState, action) {
     case SET_ERROR:
       return {
         ...state,
-        error: action.error,
+        error: { title: action.title, detail: action.detail },
       };
     case CLEAR_ERROR:
       return {

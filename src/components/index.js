@@ -11,6 +11,7 @@ import Home from './Home/Home';
 import ProgressBar from './ProgressBar/ProgressBar';
 import { PrivateRoute, AdminRoute } from './RouteValidator';
 import Verification from './Verification/Verification';
+import VerifyEmail from './Verification/VerifyEmail';
 import Profile from './Profile/Profile';
 import Cart from './Cart/Cart';
 
@@ -32,4 +33,5 @@ export {
   AdminRoute,
   Cart,
   Profile,
+  VerifyEmail,
 };

@@ -8,9 +8,9 @@ class PrivateRoute extends Component {
     if (isLoggedIn === false) {
       return <Redirect to="/signin" />;
     }
-    // if (isVerified === false) {
-    //   return <Redirect to="/verification" />;
-    // }
+    if (isVerified === false) {
+      return <Redirect to="/verification" />;
+    }
 
     return <Route path={path} render={(props) => <Component {...props} />} />;
   }

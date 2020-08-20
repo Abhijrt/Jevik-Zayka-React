@@ -1,4 +1,4 @@
-import { APIUrls, getFormBody, setToken } from '../helpers';
+import { APIUrls, getFormBody, setToken, getToken } from '../helpers';
 import { loadingStart, loadingStop } from './progress';
 import { SIGNIN_SUCCESS, SIGNOUT } from './actionTypes';
 import { setMessage, setError } from './index';
@@ -33,7 +33,7 @@ export function signIn(username, password) {
           dispatch(signInSuccess(user, user.is_admin, user.is_verified));
           setToken(data.data.token);
         } else {
-          dispatch(setError(data.message));
+          dispatch(setError('Sign In Failed', data.message));
         }
         dispatch(loadingStop());
       });
@@ -76,9 +76,56 @@ export function signUp(
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
-          dispatch(setMessage('Registration Successful'));
+          dispatch(
+            setMessage('Registration Successful', 'Please Login to Continue')
+          );
         } else {
-          dispatch(setError(data.message));
+          dispatch(setError('Registration Error', data.message));
+        }
+        dispatch(loadingStop());
+      });
+  };
+}
+
+export function sendVerificationMail() {
+  return (dispatch) => {
+    dispatch(loadingStart());
+    const url = APIUrls.sendVerificationMailURL();
+    fetch(url, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${getToken()}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          dispatch(
+            setMessage('Email Sent', 'Verification Mail Sent Successfully')
+          );
+        } else {
+          dispatch(setError('Sending Email Failed', data.message));
+        }
+        dispatch(loadingStop());
+      });
+  };
+}
+
+export function verifyAccount(token) {
+  return (dispatch) => {
+    dispatch(loadingStart());
+    const url = APIUrls.verifyAccountURL(token);
+    fetch(url, {
+      method: 'GET',
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('data');
+        dispatch(signOut());
+        if (data.success) {
+          dispatch(setMessage('Email Verification', data.message));
+        } else {
+          dispatch(setError('Email Verification', data.message));
         }
         dispatch(loadingStop());
       });

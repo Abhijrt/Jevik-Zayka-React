@@ -16,11 +16,13 @@ import {
   Verification,
   Cart,
   Profile,
+  AdminRoute,
+  VerifyEmail,
 } from './';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { signInSuccess } from '../actions';
+import { signInSuccess, clearError, clearMessage } from '../actions';
 import Error404 from './Error/Error404';
-import { getToken } from '../helpers';
+import { getToken, errorMessageAlert, successMessageAlert } from '../helpers';
 
 //rendering app component
 //using router to perform routing
@@ -40,6 +42,18 @@ class App extends Component {
     }
   }
 
+  componentDidUpdate() {
+    const { error, dispatch, message } = this.props;
+    if (error != null) {
+      errorMessageAlert(error.title, error.detail);
+      dispatch(clearError());
+    }
+    if (message != null) {
+      successMessageAlert(message.title, message.detail);
+      dispatch(clearMessage());
+    }
+  }
+
   // rendering main component based on different routes
   render() {
     const { isLoading } = this.props;
@@ -56,9 +70,13 @@ class App extends Component {
               <Route path="/signin" component={SignIn}></Route>
               <Route path="/signup" component={SignUp}></Route>
               <PrivateRoute path="/profile" component={Profile} />
-              <PrivateRoute path="/cart" component={Cart} />
+              <AdminRoute path="/cart" component={Cart} />
               <Route path="/contact" component={ContactUs} />
               <Route path="/verification" component={Verification} />
+              <Route
+                path="/verifyemail/:verification_token"
+                component={VerifyEmail}
+              />
               <Route
                 path="/about"
                 render={(props) => {
@@ -78,6 +96,8 @@ class App extends Component {
 
 function mapStateToProps(state) {
   return {
+    message: state.alert.message,
+    error: state.alert.error,
     isLoading: state.progress.isLoading,
   };
 }

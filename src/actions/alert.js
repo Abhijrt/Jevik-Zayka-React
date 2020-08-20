@@ -6,10 +6,11 @@ import {
 } from './actionTypes';
 
 // for setting up message in alert state
-function setMessage(message) {
+function setMessage(title, detail) {
   return {
     type: SET_MESSAGE,
-    message,
+    title,
+    detail,
   };
 }
 
@@ -19,10 +20,11 @@ function clearMessage() {
   };
 }
 
-function setError(error) {
+function setError(title, detail) {
   return {
     type: SET_ERROR,
-    error,
+    title,
+    detail,
   };
 }
 

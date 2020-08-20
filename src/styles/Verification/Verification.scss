@@ -1,0 +1,20 @@
+.verification-container {
+  height: 385px;
+
+  .verification-message {
+    font-size: 2rem;
+    color: black;
+    background-color: #dadada;
+    margin: 5%;
+    padding: 3%;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  .resend-mail {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
