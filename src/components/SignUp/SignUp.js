@@ -1,9 +1,9 @@
 import React, { Component, createRef } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { Input } from '../../components';
-import swal from 'sweetalert';
 import { connect } from 'react-redux';
-import { setErrorToNull, signUp } from '../../actions';
+import { clearError, signUp } from '../../actions';
+import { missingFieldAlert, errorMessageAlert } from '../../helpers';
 
 class SignUp extends Component {
   constructor(props) {
@@ -28,14 +28,10 @@ class SignUp extends Component {
 
   componentDidUpdate() {
     const { error, dispatch } = this.props;
+
     if (error != null) {
-      swal({
-        title: 'Registration Error',
-        text: error,
-        icon: 'warning',
-        button: 'Ok',
-      });
-      dispatch(setErrorToNull());
+      errorMessageAlert('Registration Error', error);
+      dispatch(clearError());
     }
   }
 
@@ -92,16 +88,6 @@ class SignUp extends Component {
     }
   };
 
-  // showing alert on blank field in form
-  swalMessage = (title, field) => {
-    swal({
-      title: title,
-      text: `Please Enter ${field}`,
-      icon: 'warning',
-      button: 'Ok',
-    });
-  };
-
   // handling form submission for sign up button
   handleSignUp = (e) => {
     e.preventDefault();
@@ -115,25 +101,28 @@ class SignUp extends Component {
       mobileNumber,
     } = this.state;
     if (email.length === 0) {
-      this.swalMessage('Missing Field', 'Email');
+      missingFieldAlert('Missing Field', 'Email');
       return;
     } else if (firstName.length === 0) {
-      this.swalMessage('Missing Field', 'First Name');
+      missingFieldAlert('Missing Field', 'First Name');
       return;
     } else if (lastName.length === 0) {
-      this.swalMessage('Missing Field', 'Last Name');
+      missingFieldAlert('Missing Field', 'Last Name');
     } else if (password.length === 0) {
-      this.swalMessage('Missing Field', 'Password');
+      missingFieldAlert('Missing Field', 'Password');
       return;
     } else if (confirm_password !== password) {
       if (confirm_password.length === 0) {
-        this.swalMessage('Missing Field', 'Confrim Password');
+        missingFieldAlert('Missing Field', 'Confrim Password');
       } else {
-        this.swalMessage('Invalid Password', 'Right Passwords');
+        missingFieldAlert(
+          'Password and Confirm Password are not Same',
+          'Same Passwords'
+        );
       }
       return;
     } else if (mobileNumber.length === 0) {
-      this.swalMessage('Missing Field', 'Mobile Number');
+      missingFieldAlert('Missing Field', 'Mobile Number');
       return;
     }
 
@@ -152,7 +141,7 @@ class SignUp extends Component {
       number === false ||
       lengthCheck === false
     ) {
-      this.swalMessage('Invalid Password', 'Valid Password');
+      missingFieldAlert('Invalid Password', 'Valid Password');
     }
 
     dispatch(
@@ -181,7 +170,7 @@ class SignUp extends Component {
         lengthCheck: false,
       },
     });
-    this.state.formRef.current.reset();
+    // this.state.formRef.current.reset();
   };
 
   // rendering sign up component
@@ -342,8 +331,8 @@ class SignUp extends Component {
 
 function mapStateToProps(state) {
   return {
-    message: state.auth.message,
-    error: state.auth.error,
+    message: state.alert.message,
+    error: state.alert.error,
     isLoggedIn: state.auth.isLoggedIn,
   };
 }

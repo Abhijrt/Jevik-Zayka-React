@@ -1,22 +1,16 @@
-import {
-  signIn,
-  signInSuccess,
-  setErrorToNull,
-  setMessage,
-  setMessageToNull,
-  signUp,
-  signOut,
-} from './auth';
+import { signIn, signInSuccess, signUp, signOut } from './auth';
+import { setMessage, clearMessage, setError, clearError } from './alert';
 import { loadingStart, loadingStop } from './progress';
 
 export {
   signIn,
   loadingStart,
   loadingStop,
-  setErrorToNull,
   signUp,
-  setMessage,
-  setMessageToNull,
   signInSuccess,
   signOut,
+  setMessage,
+  clearMessage,
+  setError,
+  clearError,
 };

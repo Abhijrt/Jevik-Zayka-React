@@ -35,7 +35,6 @@ class App extends Component {
     const { dispatch } = this.props;
     let token = getToken();
     if (token) {
-      console.log(token);
       token = jwtDecode(token);
       dispatch(signInSuccess(token, token.is_admin, token.is_verified));
     }
@@ -47,28 +46,30 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <div className="blank-nav"></div>
-          <Navbar />
-          <div className="blank-progress-bar"></div>
-          {isLoading && <ProgressBar />}
-          <Switch>
-            <Route exact path="/" component={Home}></Route>
-            <Route path="/signin" component={SignIn}></Route>
-            <Route path="/signup" component={SignUp}></Route>
-            <PrivateRoute path="/profile" component={Profile} />
-            <PrivateRoute path="/cart" component={Cart} />
-            <Route path="/contact" component={ContactUs} />
-            <Route path="/verification" component={Verification} />
-            <Route
-              path="/about"
-              render={(props) => {
-                return <AboutUs {...props} name={'Dheeraj'} />;
-              }}
-            ></Route>
-            <Route component={Error404}></Route>
-          </Switch>
-          <Footer />
-          <div className="padded-div"></div>
+          <div className="app-background">
+            <div className="blank-nav"></div>
+            <Navbar />
+            <div className="blank-progress-bar"></div>
+            {isLoading && <ProgressBar />}
+            <Switch>
+              <Route exact path="/" component={Home}></Route>
+              <Route path="/signin" component={SignIn}></Route>
+              <Route path="/signup" component={SignUp}></Route>
+              <PrivateRoute path="/profile" component={Profile} />
+              <PrivateRoute path="/cart" component={Cart} />
+              <Route path="/contact" component={ContactUs} />
+              <Route path="/verification" component={Verification} />
+              <Route
+                path="/about"
+                render={(props) => {
+                  return <AboutUs {...props} name={'Dheeraj'} />;
+                }}
+              ></Route>
+              <Route component={Error404}></Route>
+            </Switch>
+            <Footer />
+            <div className="padded-div"></div>
+          </div>
         </div>
       </Router>
     );

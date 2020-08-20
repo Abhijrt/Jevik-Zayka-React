@@ -1,13 +1,8 @@
 import { APIUrls, getFormBody, setToken } from '../helpers';
 import { loadingStart, loadingStop } from './progress';
-import {
-  SIGNIN_SUCCESS,
-  SIGNIN_FAILED,
-  SET_ERROR_NULL,
-  SET_MESSAGE,
-  SET_MESSAGE_TO_NULL,
-  SIGNOUT,
-} from './actionTypes';
+import { SIGNIN_SUCCESS, SIGNOUT } from './actionTypes';
+import { setMessage, setError } from './index';
+import * as jwtDecode from 'jwt-decode';
 
 // action creator when sign in is successed
 export function signInSuccess(user, isAdmin, isVerified) {
@@ -16,31 +11,6 @@ export function signInSuccess(user, isAdmin, isVerified) {
     user,
     isAdmin,
     isVerified,
-  };
-}
-
-// action creator when sign in is failed
-function signInFailed(error) {
-  return {
-    type: SIGNIN_FAILED,
-    error,
-  };
-}
-
-// action creator to set error to null
-export function setErrorToNull() {
-  return {
-    type: SET_ERROR_NULL,
-  };
-}
-
-export function setMessage(message) {
-  return { type: SET_MESSAGE, message };
-}
-
-export function setMessageToNull() {
-  return {
-    type: SET_MESSAGE_TO_NULL,
   };
 }
 
@@ -59,16 +29,11 @@ export function signIn(username, password) {
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
-          dispatch(
-            signInSuccess(
-              data.data.user,
-              data.data.user.is_admin,
-              data.data.user.is_verified
-            )
-          );
+          let user = jwtDecode(data.data.token);
+          dispatch(signInSuccess(user, user.is_admin, user.is_verified));
           setToken(data.data.token);
         } else {
-          dispatch(signInFailed(data.message));
+          dispatch(setError(data.message));
         }
         dispatch(loadingStop());
       });
@@ -113,7 +78,7 @@ export function signUp(
         if (data.success) {
           dispatch(setMessage('Registration Successful'));
         } else {
-          dispatch(signInFailed(data.message));
+          dispatch(setError(data.message));
         }
         dispatch(loadingStop());
       });

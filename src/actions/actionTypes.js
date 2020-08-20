@@ -4,13 +4,13 @@ export const LOADING_STOP = 'LOADING_STOP';
 
 // action types for login process
 export const SIGNIN_SUCCESS = 'LOGIN_SUCCESS';
-export const SIGNIN_FAILED = 'LOGIN_FAILED';
 export const SIGNOUT = 'SIGNOUT';
-export const SET_ERROR_NULL = 'SET_ERROR_NULL';
 
-// setting up the message in auth state,
+// setting up the message and error in alert reducer
 export const SET_MESSAGE = 'SET_MESSAGE';
-export const SET_MESSAGE_TO_NULL = 'SET_MESSAGE_TO_NULL';
+export const CLEAR_MESSAGE = 'CLEAR_MESSAGE';
+export const SET_ERROR = 'SET_ERROR';
+export const CLEAR_ERROR = 'CLEAR_ERROR';
 
 // for verifying email
 export const VERIFY_EMAIL = 'VERIFY_EMAIL';

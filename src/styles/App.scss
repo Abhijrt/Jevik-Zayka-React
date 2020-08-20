@@ -3,9 +3,22 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background-image: url('https://previews.123rf.com/images/ewastudio/ewastudio1703/ewastudio170300636/74437159-farmers-market-vegetable-market-different-raw-vegetables-background-healthy-eating.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
 
   .padded-div {
     height: 130px;
+  }
+
+  .app-background {
+    display: inherit;
+    flex-direction: inherit;
+    min-height: 100vh;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #00000094;
   }
 
   .blank-progress-bar {

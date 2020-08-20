@@ -1,9 +1,14 @@
 import React, { Component, createRef } from 'react';
 import { Input } from '../../components';
 import { connect } from 'react-redux';
-import { signIn, setErrorToNull, setMessageToNull } from '../../actions';
+import { signIn, clearMessage, clearError } from '../../actions';
 import { Link, Redirect } from 'react-router-dom';
 import swal from 'sweetalert';
+import {
+  errorMessageAlert,
+  missingFieldAlert,
+  successMessageAlert,
+} from '../../helpers';
 
 class SignIn extends Component {
   constructor(props) {
@@ -18,27 +23,17 @@ class SignIn extends Component {
   componentDidUpdate() {
     const { error, dispatch, message } = this.props;
     if (error != null) {
-      swal({
-        title: 'Login Error',
-        text: error,
-        icon: 'warning',
-        button: 'Ok',
-      });
-      dispatch(setErrorToNull());
+      errorMessageAlert('Login Error', error);
+      dispatch(clearError());
     }
     if (message != null) {
-      swal({
-        title: message,
-        text: 'Please Continue to Login',
-        icon: 'success',
-        button: 'Ok',
-      });
-      dispatch(setMessageToNull());
+      successMessageAlert(message, 'Please Login to Continue');
+      dispatch(clearMessage());
     }
   }
 
   handleOnChange = (label, value) => {
-    if (label === 'Username') {
+    if (label === 'Email or Mobile Number') {
       this.setState({ username: value });
     }
     if (label === 'Password') {
@@ -60,15 +55,15 @@ class SignIn extends Component {
     const { username, password } = this.state;
     console.log('details', username, password);
     if (username.length === 0) {
-      this.swalMessageForFormInputControl('Username');
+      missingFieldAlert('Missing Field', 'Email or Mobile Number');
       return;
     } else if (password.length === 0) {
-      this.swalMessageForFormInputControl('Password');
+      missingFieldAlert('Missing Field', 'Password');
       return;
     }
     this.props.dispatch(signIn(username, password));
     this.setState({ username: '', password: '' });
-    this.state.formRef.current.reset();
+    // this.state.formRef.current.reset();
   };
 
   render() {
@@ -83,7 +78,7 @@ class SignIn extends Component {
           <Input
             width="90%"
             type="text"
-            label="Username"
+            label="Email or Mobile Number"
             required={true}
             handleOnChange={this.handleOnChange}
             value={this.state.username}
@@ -117,8 +112,8 @@ class SignIn extends Component {
 function mapStateToProps(state) {
   return {
     isLoading: state.progress.isLoading,
-    error: state.auth.error,
-    message: state.auth.message,
+    error: state.alert.error,
+    message: state.alert.message,
     isLoggedIn: state.auth.isLoggedIn,
   };
 }

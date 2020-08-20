@@ -110,7 +110,11 @@ class Navbar extends Component {
 
           {!isLoggedIn && (
             <li>
-              <Link className="navbar-links" to="/signin">
+              <Link
+                className="navbar-links"
+                to="/signin"
+                onClick={this.handleButtonClick}
+              >
                 Sign In
               </Link>
             </li>
