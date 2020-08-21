@@ -3,7 +3,12 @@ import { Link, Redirect } from 'react-router-dom';
 import { Input } from '../../components';
 import { connect } from 'react-redux';
 import { signUp } from '../../actions';
-import { missingFieldAlert } from '../../helpers';
+import {
+  missingFieldAlert,
+  errorMessageAlert,
+  successMessageAlert,
+} from '../../helpers';
+import { clearError, clearMessage, loadingStop } from '../../actions';
 
 class SignUp extends Component {
   constructor(props) {
@@ -26,14 +31,22 @@ class SignUp extends Component {
     };
   }
 
-  // componentDidUpdate() {
-  //   const { error, dispatch } = this.props;
+  componentDidUpdate() {
+    const { error, dispatch, message, isLoading } = this.props;
 
-  //   if (error != null) {
-  //     errorMessageAlert('Registration Error', error);
-  //     dispatch(clearError());
-  //   }
-  // }
+    if (message != null) {
+      successMessageAlert(message.title, message.detail);
+      dispatch(clearMessage());
+    }
+
+    if (error != null) {
+      errorMessageAlert('Registration Error', error);
+      dispatch(clearError());
+    }
+    if (isLoading === true) {
+      dispatch(loadingStop());
+    }
+  }
 
   // checking for password validation in password input
   checkValidation = (value) => {
@@ -170,7 +183,7 @@ class SignUp extends Component {
         lengthCheck: false,
       },
     });
-    // this.state.formRef.current.reset();
+    this.state.formRef.current.reset();
   };
 
   // rendering sign up component
@@ -334,6 +347,7 @@ function mapStateToProps(state) {
     message: state.alert.message,
     error: state.alert.error,
     isLoggedIn: state.auth.isLoggedIn,
+    isLoading: state.progress.isLoading,
   };
 }
 

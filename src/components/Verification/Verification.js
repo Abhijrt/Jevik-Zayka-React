@@ -23,6 +23,7 @@ class Verification extends Component {
 
   handleResendMail = () => {
     this.props.dispatch(sendVerificationMail());
+    return <Redirect to="/signin" />;
   };
 
   render() {

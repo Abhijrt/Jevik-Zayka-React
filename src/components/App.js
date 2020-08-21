@@ -21,9 +21,9 @@ import {
   ForgetPassword,
 } from './';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { signInSuccess, clearError, clearMessage } from '../actions';
+import { signInSuccess } from '../actions';
 import Error404 from './Error/Error404';
-import { getToken, errorMessageAlert, successMessageAlert } from '../helpers';
+import { getToken } from '../helpers';
 
 //rendering app component
 //using router to perform routing
@@ -43,16 +43,8 @@ class App extends Component {
     }
   }
 
-  componentDidUpdate() {
-    const { error, dispatch, message } = this.props;
-    if (error != null) {
-      errorMessageAlert(error.title, error.detail);
-      dispatch(clearError());
-    }
-    if (message != null) {
-      successMessageAlert(message.title, message.detail);
-      dispatch(clearMessage());
-    }
+  componentDidUpdate(prevProps, prevState) {
+    console.log(this.props.isLoggedIn);
   }
 
   // rendering main component based on different routes

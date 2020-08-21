@@ -103,6 +103,7 @@ export function sendVerificationMail() {
           dispatch(
             setMessage('Email Sent', 'Verification Mail Sent Successfully')
           );
+          dispatch(signOut());
         } else {
           dispatch(setError('Sending Email Failed', data.message));
         }

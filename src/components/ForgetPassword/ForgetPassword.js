@@ -22,9 +22,7 @@ class ForgetPassword extends Component {
     const { isLoading } = this.props;
     return (
       <div className="signin-container forget-password-container">
-        <div className="heading unselectable" style={{ fontSize: '2rem' }}>
-          Forget Password
-        </div>
+        <div className="heading unselectable">Forget Password</div>
         <form ref={this.state.formRef}>
           <Input
             width="90%"
