@@ -70,6 +70,17 @@ class Navbar extends Component {
             >
               Products
             </Link>
+            <ul className="dropdown">
+              <li>
+                <Link to="/addproduct">Fruits</Link>
+              </li>
+              <li>
+                <Link to="/addproduct">Vegetables</Link>
+              </li>
+              <li>
+                <Link to="/addproduct">Add Product</Link>
+              </li>
+            </ul>
           </li>
 
           {isLoggedIn && (
