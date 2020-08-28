@@ -21,6 +21,7 @@ class Navbar extends Component {
   // handling navbar items button click
   // on small screen when we click a button then menu list should be hidden
   handleButtonClick = () => {
+    console.log('clicked h');
     this.setState({ menuIconClicked: false });
   };
 
@@ -34,7 +35,7 @@ class Navbar extends Component {
 
   // rendering navbar component
   render() {
-    const { isLoggedIn } = this.props.auth;
+    const { isLoggedIn, isAdmin } = this.props.auth;
     const { first_name } = this.props.auth.user;
     return (
       <nav className="navbar-container unselectable">
@@ -62,24 +63,20 @@ class Navbar extends Component {
               <span className="navbar-links user-name">Hi, {first_name}</span>
             </li>
           )}
-          <li>
-            <Link
-              className="navbar-links"
-              to="/"
-              onClick={this.handleButtonClick}
-            >
-              Products
-            </Link>
+          <li id="product">
+            <span className="navbar-links">Products</span>
             <ul className="dropdown">
-              <li>
-                <Link to="/addproduct">Fruits</Link>
+              <li onClick={this.handleButtonClick}>
+                <Link to="/fruits">Fruits</Link>
               </li>
-              <li>
-                <Link to="/addproduct">Vegetables</Link>
+              <li onClick={this.handleButtonClick}>
+                <Link to="/vegetables">Vegetables</Link>
               </li>
-              <li>
-                <Link to="/addproduct">Add Product</Link>
-              </li>
+              {isAdmin && (
+                <li onClick={this.handleButtonClick}>
+                  <Link to="/add-product">Add Product</Link>
+                </li>
+              )}
             </ul>
           </li>
 

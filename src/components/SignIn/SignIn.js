@@ -1,10 +1,14 @@
 import React, { Component, createRef } from 'react';
 import { Input } from '../../components';
 import { connect } from 'react-redux';
-import { signIn } from '../../actions';
+import { signIn, clearMessage, clearError } from '../../actions';
 import { Link, Redirect } from 'react-router-dom';
 import swal from 'sweetalert';
-import { missingFieldAlert } from '../../helpers';
+import {
+  missingFieldAlert,
+  errorMessageAlert,
+  successMessageAlert,
+} from '../../helpers';
 
 class SignIn extends Component {
   constructor(props) {
@@ -16,17 +20,20 @@ class SignIn extends Component {
     };
   }
 
-  // componentDidUpdate() {
-  //   const { error, dispatch, message } = this.props;
-  //   if (error != null) {
-  //     errorMessageAlert('Error', error);
-  //     dispatch(clearError());
-  //   }
-  //   if (message != null) {
-  //     successMessageAlert(message, 'Please Login to Continue');
-  //     dispatch(clearMessage());
-  //   }
-  // }
+  componentDidMount() {
+    this.setState({ username: '', password: '' });
+  }
+  componentDidUpdate() {
+    const { error, dispatch, message } = this.props;
+    if (error != null) {
+      errorMessageAlert('Error', error.detail);
+      dispatch(clearError());
+    }
+    if (message != null) {
+      successMessageAlert(message.title, 'Please Login to Continue');
+      dispatch(clearMessage());
+    }
+  }
 
   handleOnChange = (label, value) => {
     if (label === 'Email or Mobile Number') {
@@ -58,7 +65,6 @@ class SignIn extends Component {
       return;
     }
     this.props.dispatch(signIn(username, password));
-    this.setState({ username: '', password: '' });
     // this.state.formRef.current.reset();
   };
 
