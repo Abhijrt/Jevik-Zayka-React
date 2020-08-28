@@ -15,6 +15,7 @@ import VerifyEmail from './Verification/VerifyEmail';
 import Profile from './Profile/Profile';
 import ForgetPassword from './ForgetPassword/ForgetPassword';
 import Cart from './Cart/Cart';
+import AddProduct from './Product/AddProduct';
 
 //exporting all the components from here
 export {
@@ -36,4 +37,5 @@ export {
   Profile,
   VerifyEmail,
   ForgetPassword,
+  AddProduct,
 };

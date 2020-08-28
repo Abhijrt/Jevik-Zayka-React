@@ -41,7 +41,7 @@ class Navbar extends Component {
       <nav className="navbar-container unselectable">
         <div className="navbar-logo">
           <Link to="/" onClick={this.handleButtonClick}>
-            Jaivik Zayka
+            JAIVIK ZAYKA
           </Link>
         </div>
         <div className="menu-icon" onClick={this.handleMenuIconClick}>
@@ -64,7 +64,9 @@ class Navbar extends Component {
             </li>
           )}
           <li id="product">
-            <span className="navbar-links">Products</span>
+            <span className="navbar-links">
+              Products <i class="fa fa-angle-down"></i>
+            </span>
             <ul className="dropdown">
               <li onClick={this.handleButtonClick}>
                 <Link to="/fruits">Fruits</Link>

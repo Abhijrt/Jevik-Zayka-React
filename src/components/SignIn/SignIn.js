@@ -23,6 +23,7 @@ class SignIn extends Component {
   componentDidMount() {
     this.setState({ username: '', password: '' });
   }
+
   componentDidUpdate() {
     const { error, dispatch, message } = this.props;
     if (error != null) {

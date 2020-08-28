@@ -14,11 +14,11 @@ import {
   ProgressBar,
   PrivateRoute,
   Verification,
-  Cart,
   Profile,
   AdminRoute,
   VerifyEmail,
   ForgetPassword,
+  AddProduct,
 } from './';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { signInSuccess } from '../actions';
@@ -63,7 +63,7 @@ class App extends Component {
               <Route path="/signin" component={SignIn}></Route>
               <Route path="/signup" component={SignUp}></Route>
               <PrivateRoute path="/profile" component={Profile} />
-              <AdminRoute path="/cart" component={Cart} />
+              <AdminRoute path="/add-product" component={AddProduct} />
               <Route path="/contact" component={ContactUs} />
               <Route path="/verification" component={Verification} />
               <Route path="/forgetpassword" component={ForgetPassword} />

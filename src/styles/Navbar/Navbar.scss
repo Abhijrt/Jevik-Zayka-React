@@ -99,12 +99,18 @@
     }
   }
 
-  // #product {
-  //   color: red;
-  // }
+  #product {
+    span {
+      i {
+        display: none;
+      }
+    }
+  }
 
-  #product:hover .dropdown {
-    display: block;
+  #product:hover {
+    .dropdown {
+      display: block;
+    }
   }
 
   .user-name:hover {
@@ -128,6 +134,15 @@
       left: -110%;
       opacity: 1;
       /* transition: all 0.5s ease-in; */
+    }
+
+    #product {
+      span {
+        i {
+          display: inline;
+          margin-left: 1%;
+        }
+      }
     }
 
     .active {
