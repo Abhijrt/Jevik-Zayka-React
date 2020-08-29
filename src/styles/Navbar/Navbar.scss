@@ -74,24 +74,24 @@
     top: 31px;
     left: -27px;
 
-    li {
-      margin: 1% 0%;
+    a {
       font-size: 1.2rem;
-      border-bottom: 1px solid darkgrey;
       color: slategrey;
-      padding: 4% 0%;
+      text-decoration: none;
       cursor: pointer;
 
-      a {
+      li {
         font-size: 1.2rem;
-        text-decoration: none;
+        padding: 4% 0%;
         color: black;
         font-weight: bold;
+        margin: 1% 0%;
+        border-bottom: 1px solid darkgrey;
       }
     }
 
     li:hover {
-      background-color: #60c9ba;
+      background-image: linear-gradient(to right, #05b6ad, #1bbeb6, #0dcbd5);
 
       a {
         color: whitesmoke;
@@ -161,7 +161,7 @@
     }
 
     .navbar-links:hover {
-      background: #01d5d5;
+      background-image: linear-gradient(to right, #05b6ad, #1bbeb6, #0dcbd5);
       border-radius: 0;
     }
 
@@ -170,10 +170,12 @@
       position: initial;
 
       width: 100%;
-      li {
-        margin: 0% 0%;
-        font-size: 1.2rem;
-        padding: 1.5% 0%;
+      a {
+        li {
+          margin: 0% 0%;
+          font-size: 1.2rem;
+          padding: 2.5% 0%;
+        }
       }
     }
     .user-name {

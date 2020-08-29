@@ -1,0 +1,30 @@
+.add-product-container {
+  height: 200px;
+  width: 45%;
+  align-self: center;
+  border: 2px solid red;
+}
+
+@media screen and (max-width: 1250px) {
+  .add-product-container {
+    width: 55%;
+  }
+}
+
+@media screen and (max-width: 1050px) {
+  .add-product-container {
+    width: 70%;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .add-product-container {
+    width: 85%;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .add-product-container {
+    width: 97%;
+  }
+}

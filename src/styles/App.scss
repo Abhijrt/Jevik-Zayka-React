@@ -1,6 +1,5 @@
 .App {
   position: relative;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
 
@@ -54,3 +53,4 @@
 @import './ProgressBar/ProgressBar.scss';
 @import './Verification/Verification.scss';
 @import './ForgetPassword/ForgetPassword.scss';
+@import './Product/AddProduct.scss';

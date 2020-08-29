@@ -68,16 +68,16 @@ class Navbar extends Component {
               Products <i class="fa fa-angle-down"></i>
             </span>
             <ul className="dropdown">
-              <li onClick={this.handleButtonClick}>
-                <Link to="/fruits">Fruits</Link>
-              </li>
-              <li onClick={this.handleButtonClick}>
-                <Link to="/vegetables">Vegetables</Link>
-              </li>
+              <Link to="/fruits">
+                <li onClick={this.handleButtonClick}>Fruits</li>
+              </Link>
+              <Link to="/vegetables">
+                <li onClick={this.handleButtonClick}>Vegetables</li>
+              </Link>
               {isAdmin && (
-                <li onClick={this.handleButtonClick}>
-                  <Link to="/add-product">Add Product</Link>
-                </li>
+                <Link to="/add-product">
+                  <li onClick={this.handleButtonClick}>Add Product</li>
+                </Link>
               )}
             </ul>
           </li>
