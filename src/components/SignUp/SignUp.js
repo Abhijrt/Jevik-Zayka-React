@@ -207,7 +207,7 @@ class SignUp extends Component {
         <div className="heading unselectable">Register</div>
         <form ref={this.state.formRef}>
           <Input
-            width="90%"
+            width="100%"
             type="email"
             label="Email"
             required={true}
@@ -215,7 +215,7 @@ class SignUp extends Component {
             value={this.state.email}
           />
           <Input
-            width="90%"
+            width="100%"
             type="text"
             label="First Name"
             required={true}
@@ -223,7 +223,7 @@ class SignUp extends Component {
             value={this.state.Name}
           />
           <Input
-            width="90%"
+            width="100%"
             type="text"
             label="Last Name"
             required={true}
@@ -231,7 +231,7 @@ class SignUp extends Component {
             value={this.state.Name}
           />
           <Input
-            width="90%"
+            width="100%"
             type="password"
             label="Password"
             required={true}
@@ -311,7 +311,7 @@ class SignUp extends Component {
             </div>
           </div>
           <Input
-            width="90%"
+            width="100%"
             type="password"
             label="Confirm Password"
             required={true}
@@ -319,7 +319,7 @@ class SignUp extends Component {
             value={this.state.confirm_password}
           />
           <Input
-            width="90%"
+            width="100%"
             type="number"
             label="Mobile Number"
             required={true}

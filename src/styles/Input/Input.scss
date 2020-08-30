@@ -1,5 +1,5 @@
 .input-container {
-  margin: 8% 10%;
+  margin: 5% 0%;
   height: 56px;
   width: 180px;
   padding: 7px;
@@ -32,6 +32,11 @@ input {
   font-weight: 700;
   text-indent: 0.75rem;
   color: rgba(black, 0.875);
+  margin-left: 2px;
+  width: 95%;
+  height: 99%;
+  background: whitesmoke;
+  border-radius: 4px;
 }
 
 input:focus {

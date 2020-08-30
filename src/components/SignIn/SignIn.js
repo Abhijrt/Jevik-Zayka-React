@@ -79,7 +79,7 @@ class SignIn extends Component {
         <div className="heading unselectable">Login</div>
         <form ref={this.state.formRef}>
           <Input
-            width="90%"
+            width="100%"
             type="text"
             label="Email or Mobile Number"
             required={true}
@@ -87,7 +87,7 @@ class SignIn extends Component {
             value={this.state.username}
           />
           <Input
-            width="90%"
+            width="100%"
             type="password"
             label="Password"
             required={true}
