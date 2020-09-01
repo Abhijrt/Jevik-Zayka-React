@@ -1,7 +1,4 @@
 .sign-up-container {
-  height: 900px;
-  margin-top: 10px;
-
   //   for chorme, safari, opera and other
   input::-webkit-outer-spin-button,
   input::-webkit-inner-spin-button {
@@ -21,6 +18,7 @@
   }
 
   .password-validator-container {
+    margin-left: 1rem;
     .password-validator {
       width: 51%;
       border: 0.5px solid red;
@@ -47,9 +45,11 @@
 }
 
 @media screen and (max-width: 535px) {
-  .password-validator-container {
-    .password-validator {
-      width: 82%;
+  .sign-up-container {
+    .password-validator-container {
+      .password-validator {
+        width: 82%;
+      }
     }
   }
 }

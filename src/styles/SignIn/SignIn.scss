@@ -26,7 +26,8 @@
   .submit {
     text-align: center;
     display: block;
-    height: 53px;
+    height: 45px;
+    margin-top: 1.5rem;
 
     button {
       font-size: 1.5rem;
@@ -40,7 +41,8 @@
       border-radius: 14px;
     }
 
-    button:focus {
+    button:hover {
+      cursor: pointer;
       border: none;
       box-shadow: 0px 0px 0px 2px;
       transition: 1s border-color ease-in-out;
@@ -51,20 +53,13 @@
   .create-account {
     text-align: center;
     display: block;
-    font-size: 1rem;
-    padding: 21px;
     font-weight: 700;
     color: darkslateblue;
+    margin: 0.3rem;
 
     a {
-      padding: 10px 47px;
-      border-radius: 14px;
-      background: #000000c4;
-      font-size: 1.2rem;
-      text-decoration: none;
-      color: antiquewhite;
-      font-weight: 800;
-      border: 2px solid #ff6d6d;
+      font-size: 1rem;
+      color: #0a59ab;
     }
   }
 
@@ -76,15 +71,8 @@
     text-align: center;
     color: black;
     font-weight: bold;
-  }
-}
-
-@media screen and (max-width: 535px) {
-  .signin-container {
-  }
-}
-
-@media screen and (max-width: 470px) {
-  .signin-container {
+    a {
+      color: #ff5f5f;
+    }
   }
 }
