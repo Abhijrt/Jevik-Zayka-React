@@ -1,5 +1,11 @@
 import { APIUrls } from './urls';
-import { getFormBody, setToken, getToken, removeToken } from './utils';
+import {
+  getFormBody,
+  setToken,
+  getToken,
+  removeToken,
+  getFormBodyMultipart,
+} from './utils';
 import {
   missingFieldAlert,
   errorMessageAlert,
@@ -15,4 +21,5 @@ export {
   missingFieldAlert,
   errorMessageAlert,
   successMessageAlert,
+  getFormBodyMultipart,
 };

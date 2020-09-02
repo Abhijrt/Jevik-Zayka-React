@@ -10,16 +10,19 @@ class Products extends Component {
 
   // rendering fruits on the basis of category
   render() {
-    const { category } = this.props;
+    // const { category } = this.props;
     const { products } = this.props.products;
-    console.log('products hai', products, category);
     return (
       <div>
         {products.map((product) => {
           return (
             <div key={product._id}>
               <div>{product.title}</div>
-              <img src={product.product_image} alt={product.title}></img>
+              <img
+                src={product.product_image}
+                alt={product.title}
+                style={{ width: '100px', height: '100px' }}
+              ></img>
               <div>{product.category}</div>
               <div>{product.marked_price}</div>
               <div>{product.selling_price}</div>
