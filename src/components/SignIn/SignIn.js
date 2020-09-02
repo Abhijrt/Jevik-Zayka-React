@@ -108,7 +108,7 @@ class SignIn extends Component {
           <Link to="/signup">Create Account</Link>
         </div>
         <div className="forget-password unselectable">
-          <Link to="/forgetpassword">Forget Password</Link>
+          <Link to="/forgetpassword">Forget Password..?</Link>
         </div>
       </div>
     );

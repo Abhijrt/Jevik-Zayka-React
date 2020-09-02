@@ -14,3 +14,6 @@ export const CLEAR_ERROR = 'CLEAR_ERROR';
 
 // for verifying email
 export const VERIFY_EMAIL = 'VERIFY_EMAIL';
+
+// for products related functions
+export const FETCH_PRODUCTS = 'FETCH_PRODUCTS';

@@ -25,7 +25,7 @@ class ForgetPassword extends Component {
         <div className="heading unselectable">Forget Password</div>
         <form ref={this.state.formRef}>
           <Input
-            width="90%"
+            width="100%"
             type="text"
             label="Email"
             required={true}

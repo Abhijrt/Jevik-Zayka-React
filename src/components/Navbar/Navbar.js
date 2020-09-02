@@ -21,7 +21,6 @@ class Navbar extends Component {
   // handling navbar items button click
   // on small screen when we click a button then menu list should be hidden
   handleButtonClick = () => {
-    console.log('clicked h');
     this.setState({ menuIconClicked: false });
   };
 
@@ -65,7 +64,7 @@ class Navbar extends Component {
           )}
           <li id="product">
             <span className="navbar-links">
-              Products <i class="fa fa-angle-down"></i>
+              Products <i className="fa fa-angle-down"></i>
             </span>
             <ul className="dropdown">
               <Link to="/fruits">
