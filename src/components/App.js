@@ -19,6 +19,8 @@ import {
   VerifyEmail,
   ForgetPassword,
   AddProduct,
+  Fruits,
+  Vegetables,
 } from './';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { signInSuccess } from '../actions';
@@ -43,10 +45,6 @@ class App extends Component {
     }
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    console.log(this.props.isLoggedIn);
-  }
-
   // rendering main component based on different routes
   render() {
     const { isLoading } = this.props;
@@ -60,6 +58,8 @@ class App extends Component {
             {isLoading && <ProgressBar />}
             <Switch>
               <Route exact path="/" component={Home}></Route>
+              <Route exact path="/fruits" component={Fruits}></Route>
+              <Route exact path="/vegetables" component={Vegetables}></Route>
               <Route path="/signin" component={SignIn}></Route>
               <Route path="/signup" component={SignUp}></Route>
               <PrivateRoute path="/profile" component={Profile} />

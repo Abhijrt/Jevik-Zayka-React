@@ -37,11 +37,13 @@ class SignUp extends Component {
     if (message != null) {
       successMessageAlert(message.title, message.detail);
       dispatch(clearMessage());
+      this.state.formRef.current.reset();
     }
 
     if (error != null) {
       errorMessageAlert('Registration Error', error);
       dispatch(clearError());
+      this.state.formRef.current.reset();
     }
     if (isLoading === true) {
       dispatch(loadingStop());

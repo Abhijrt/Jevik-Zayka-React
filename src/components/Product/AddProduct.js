@@ -1,7 +1,14 @@
-import React, { Component } from 'react';
+import React, { Component, createRef } from 'react';
 import { Input } from '../../components';
-import { addProduct } from '../../actions';
+import {
+  addProduct,
+  clearError,
+  clearMessage,
+  setError,
+  loadingStop,
+} from '../../actions';
 import { connect } from 'react-redux';
+import { errorMessageAlert, successMessageAlert } from '../../helpers';
 
 class AddProduct extends Component {
   constructor(props) {
@@ -18,7 +25,60 @@ class AddProduct extends Component {
       },
       product_image: null,
     };
+    this.formRef = createRef();
   }
+
+  componentDidMount() {
+    const { isLoading, dispatch } = this.props;
+    if (isLoading === true) {
+      dispatch(loadingStop());
+    }
+  }
+
+  // showing notifications
+  componentDidUpdate() {
+    const { error, dispatch, message } = this.props;
+    if (error != null) {
+      errorMessageAlert(error.title, error.detail);
+      dispatch(clearError());
+      this.formRef.current.reset();
+    }
+    if (message != null) {
+      successMessageAlert(message.title, message.detail);
+      dispatch(clearMessage());
+      this.formRef.current.reset();
+    }
+  }
+
+  inputValidationCheck = () => {
+    const {
+      title,
+      marked_price,
+      selling_price,
+      stock_quantity,
+      product_image,
+    } = this.state;
+
+    const { dispatch } = this.props;
+
+    if (title.length === 0) {
+      dispatch(setError('Missing Field', 'Enter Title'));
+      return false;
+    } else if (marked_price.length === 0) {
+      dispatch(setError('Missing Field', 'Enter Maked Price'));
+      return false;
+    } else if (selling_price.length === 0) {
+      dispatch(setError('Missing Field', 'Enter Selling Price'));
+      return false;
+    } else if (stock_quantity.kilogram === 0 && stock_quantity.gram === 0) {
+      dispatch(setError('Missing Field', 'Enter Stock Quantity'));
+      return false;
+    } else if (product_image === null) {
+      dispatch(setError('Missing Field', 'Upload Product Image'));
+      return false;
+    }
+    return true;
+  };
 
   // handleling form changes for various values
   handleOnChange = (label, value) => {
@@ -40,7 +100,7 @@ class AddProduct extends Component {
     } else if (label === 'Gram') {
       this.setState({
         stock_quantity: {
-          kilogram: this.state.stock_quantity.gram,
+          kilogram: this.state.stock_quantity.kilogram,
           gram: value,
         },
       });
@@ -56,7 +116,6 @@ class AddProduct extends Component {
 
   // handle product image input change
   handleImageInputChange = (e) => {
-    console.log('image', e.target.files[0]);
     this.setState({ product_image: e.target.files[0] });
   };
 
@@ -64,6 +123,10 @@ class AddProduct extends Component {
   handleAddProductButton = (e) => {
     const { dispatch } = this.props;
     e.preventDefault();
+    let validation = this.inputValidationCheck();
+    if (!validation) {
+      return;
+    }
     let formData = { ...this.state };
     let stock_quantity =
       parseInt(formData.stock_quantity.kilogram) * 1000 +
@@ -80,10 +143,11 @@ class AddProduct extends Component {
       sold_by,
       stock_quantity,
     } = this.state;
+    const { isLoading } = this.props;
     return (
       <div className="add-product-container">
         <div className="heading">Add Product</div>
-        <form>
+        <form ref={this.formRef}>
           <Input
             width="100%"
             type="text"
@@ -92,8 +156,8 @@ class AddProduct extends Component {
             handleOnChange={this.handleOnChange}
             value={title}
           />
-          <div>
-            <div>Category</div>
+          <div className="category-container">
+            <div className="category-heading">Category :-</div>
             <select
               name="cars"
               id="category"
@@ -102,6 +166,29 @@ class AddProduct extends Component {
               <option value="Fruits">Fruits</option>
               <option value="Vegetables">Vegetable</option>
             </select>
+          </div>
+          <div className="product-image-container">
+            <div className="product-image-heading">Product Image</div>
+            <input type="file" onChange={this.handleImageInputChange} />
+          </div>
+          <div className="stock-quantity-container">
+            <div className="stock-quantity">Stock Quantity :-</div>
+            <Input
+              width="100%"
+              type="Number"
+              label="KG"
+              required={true}
+              handleOnChange={this.handleOnChange}
+              value={stock_quantity.kilogram}
+            />
+            <Input
+              width="100%"
+              type="Number"
+              label="Gram"
+              required={true}
+              handleOnChange={this.handleOnChange}
+              value={stock_quantity.gram}
+            />
           </div>
           <Input
             width="100%"
@@ -119,25 +206,6 @@ class AddProduct extends Component {
             handleOnChange={this.handleOnChange}
             value={selling_price}
           />
-          <div>
-            <div>Stock Quantity</div>
-            <Input
-              width="40%"
-              type="Number"
-              label="KG"
-              required={true}
-              handleOnChange={this.handleOnChange}
-              value={stock_quantity.kilogram}
-            />
-            <Input
-              width="40%"
-              type="Number"
-              label="Gram"
-              required={true}
-              handleOnChange={this.handleOnChange}
-              value={stock_quantity.gram}
-            />
-          </div>
           <Input
             width="100%"
             type="text"
@@ -146,19 +214,13 @@ class AddProduct extends Component {
             handleOnChange={this.handleOnChange}
             value={sold_by}
           />
-          <div className="product-image">
-            <div>Product Image</div>
-            <input
-              type="file"
-              placeholder="Image"
-              onChange={this.handleImageInputChange}
-            />
-          </div>
-          <div className="add_product-button">
+
+          <div className="add-product-button">
             <button
               type="submit"
               className="button"
               onClick={this.handleAddProductButton}
+              dispabled={isLoading}
             >
               Add Product
             </button>
@@ -169,4 +231,12 @@ class AddProduct extends Component {
   }
 }
 
-export default connect()(AddProduct);
+function mapStateToProps(state) {
+  return {
+    isLoading: state.progress.isLoading,
+    error: state.alert.error,
+    message: state.alert.message,
+  };
+}
+
+export default connect(mapStateToProps)(AddProduct);

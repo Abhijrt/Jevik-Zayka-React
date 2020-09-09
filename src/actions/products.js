@@ -1,6 +1,7 @@
 import { FETCH_PRODUCTS } from './actionTypes';
 import { loadingStart, loadingStop } from '../actions';
 import { APIUrls, getFormBodyMultipart, getToken } from '../helpers';
+import { setMessage, setError } from './alert';
 
 // storing product in store,
 export function setProducts(products) {
@@ -35,10 +36,10 @@ export function fetchProducts() {
 }
 
 export function addProduct(formData) {
-  return (dispatch) => {
-    dispatch(loadingStart());
+  return async (dispatch) => {
+    await dispatch(loadingStart());
     const url = APIUrls.addProduct();
-    fetch(url, {
+    await fetch(url, {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${getToken()}`,
@@ -47,10 +48,14 @@ export function addProduct(formData) {
     })
       .then((response) => response.json())
       .then((data) => {
+        console.log(data);
         if (data.success) {
+          console.log('working');
+          dispatch(setMessage('successful', 'Product Added'));
         } else {
+          dispatch(setError('Error', 'Error in adding Product'));
         }
-        dispatch(loadingStop());
       });
+    await dispatch(loadingStop());
   };
 }
