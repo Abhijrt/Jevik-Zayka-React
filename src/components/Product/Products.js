@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchProducts } from '../../actions';
+import ProductItem from './ProductItem';
 
 class Products extends Component {
   componentDidMount() {
@@ -13,23 +14,24 @@ class Products extends Component {
     // const { category } = this.props;
     const { products } = this.props.products;
     return (
-      <div>
+      <div className="product-container">
         {products.map((product) => {
-          return (
-            <div key={product._id}>
-              <div>{product.title}</div>
-              <img
-                src={product.product_image}
-                alt={product.title}
-                style={{ width: '100px', height: '100px' }}
-              ></img>
-              <div>{product.category}</div>
-              <div>{product.marked_price}</div>
-              <div>{product.selling_price}</div>
-              <div>{product.stock_quantity}</div>
-              <div>{product.sold_by}</div>
-            </div>
-          );
+          return <ProductItem product={product} />;
+        })}
+        {products.map((product) => {
+          return <ProductItem product={product} />;
+        })}
+        {products.map((product) => {
+          return <ProductItem product={product} />;
+        })}
+        {products.map((product) => {
+          return <ProductItem product={product} />;
+        })}
+        {products.map((product) => {
+          return <ProductItem product={product} />;
+        })}
+        {products.map((product) => {
+          return <ProductItem product={product} />;
         })}
       </div>
     );
