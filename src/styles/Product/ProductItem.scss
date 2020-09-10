@@ -1,81 +1,121 @@
 // for product container
 .product-item-container {
-  margin: 1% 1%;
-  padding: 1%;
-  width: 240px;
-  background: #eef4f2;
-  height: 400px;
-  border-radius: 10px;
-  box-shadow: 0px 0.5px 1px 0.5px #7fd2d5;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 247px;
+  height: 380px;
+  border: 0.3px solid hsla(0, 0%, 50%, 0.569);
+  background-color: white;
 
-  // for product image
-  .product-image {
-    width: 99%;
-    height: 50%;
-    align-self: center;
-    text-align: center;
-    box-shadow: 0px 0px 0px 0.2px #2fccd2;
-    border-radius: 10px;
-    overflow: hidden;
+  .container {
+    height: 92%;
+    width: 92%;
 
-    img {
+    // image container
+    .product-image {
+      height: 65%;
       width: 100%;
-      height: 100%;
-      opacity: 0.9;
+
+      img {
+        width: 100%;
+        height: 100%;
+        border: 0.2px solid lightgrey;
+        border-radius: 4px;
+        text-align: center;
+      }
     }
-  }
+    .item-detail-container {
+      .title {
+        color: #000000cf;
+        height: 40px;
+        display: flex;
+        font-family: 'Cabin', sans-serif;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.8rem;
+        font-weight: bolder;
+      }
 
-  .product-item-detail-container {
-    padding-top: 3%;
-    height: 60%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+      .rating-quantity-container {
+        color: black;
+        // border: 2px solid blue;
+        height: 44px;
+        display: flex;
+        align-items: center;
 
-    .product-title {
-      font-size: 2rem;
-      color: #01a1ad;
-      text-align: center;
-    }
+        .rating {
+          width: 60%;
+          // border: 0.5px solid green;
+          font-family: 'Cabin', sans-serif;
+          i {
+            color: goldenrod;
+          }
+        }
 
-    .product-price-container {
-      display: flex;
-      justify-content: space-between;
-      font-weight: bold;
-
-      .product-price {
-        font-size: 1.3rem;
-        padding: 0% 2%;
-        font-size: 1.5rem;
-        color: #020277;
-        i {
-          padding-right: 2px;
+        .quantity {
+          text-align: end;
+          width: 39%;
+          font-family: 'Cabin', sans-serif;
+          // border: 2px solid aqua;
         }
       }
-      .product-marked-price {
-        font-size: 0.8rem;
-        margin-left: 4px;
-        align-self: end;
-        text-decoration: line-through;
-      }
-      .product-discount {
-        color: green;
-        font-size: 1rem;
+
+      .price-cart-container {
+        color: black;
+        // border: 2px solid pink;
+        height: 45px;
+        display: flex;
+
+        align-items: center;
+
+        .price-container {
+          width: 70%;
+          font-family: 'Cabin', sans-serif;
+
+          // border: 0.5px solid salmon;
+
+          .price {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: navy;
+
+            span {
+              font-size: 0.7rem;
+              text-decoration: line-through;
+            }
+          }
+
+          .discount {
+            color: green;
+            font-size: 0.8rem;
+            font-weight: 600;
+            font-family: 'Cabin', sans-serif;
+          }
+        }
+
+        .cart {
+          width: 30%;
+          // border: 0.5px solid fuchsia;
+          background: #62d2a2;
+          color: white;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 2px;
+          font-size: 2rem;
+          cursor: pointer;
+          height: 94%;
+        }
+
+        .cart:hover {
+          background-color: #007140;
+        }
       }
     }
-  }
-  .product-desc {
-    font-size: 0.9rem;
-    color: #038484;
-    text-align: justify;
-  }
-}
 
-@media screen and (max-width: 600px) {
-  .product-item-container {
-    width: 312px;
-    padding: 4% 7%;
+    // styles related to container of product detail
+    .product-item-detail-container {
+    }
   }
 }
