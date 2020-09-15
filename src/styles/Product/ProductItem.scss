@@ -3,14 +3,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 247px;
+  width: 300px;
   height: 380px;
-  border: 0.3px solid hsla(0, 0%, 50%, 0.569);
+  border: 0.3px solid #8080801a;
   background-color: white;
 
   .container {
     height: 92%;
-    width: 92%;
+    width: 80%;
+    text-decoration: none;
 
     // image container
     .product-image {
@@ -34,7 +35,11 @@
         justify-content: center;
         align-items: center;
         font-size: 1.8rem;
+        text-decoration: none;
         font-weight: bolder;
+      }
+      .title:hover {
+        text-decoration: underline;
       }
 
       .rating-quantity-container {
@@ -46,6 +51,7 @@
 
         .rating {
           width: 60%;
+          color: #300065;
           // border: 0.5px solid green;
           font-family: 'Cabin', sans-serif;
           i {
@@ -55,6 +61,7 @@
 
         .quantity {
           text-align: end;
+          color: #300065;
           width: 39%;
           font-family: 'Cabin', sans-serif;
           // border: 2px solid aqua;
@@ -78,10 +85,11 @@
           .price {
             font-size: 1.2rem;
             font-weight: 600;
-            color: navy;
+            color: #300065;
 
             span {
               font-size: 0.7rem;
+              color: grey;
               text-decoration: line-through;
             }
           }

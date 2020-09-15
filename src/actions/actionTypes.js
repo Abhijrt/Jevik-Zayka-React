@@ -17,3 +17,5 @@ export const VERIFY_EMAIL = 'VERIFY_EMAIL';
 
 // for products related functions
 export const FETCH_PRODUCTS = 'FETCH_PRODUCTS';
+export const SET_PRODUCT_DETAIL = 'SET_PRODUCT_DETAIL';
+export const CLEAR_PRODUCT_DETAIL = 'CLEAR_PRODUCT_DETAIL';

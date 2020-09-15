@@ -1,4 +1,8 @@
-import { FETCH_PRODUCTS } from './actionTypes';
+import {
+  FETCH_PRODUCTS,
+  SET_PRODUCT_DETAIL,
+  CLEAR_PRODUCT_DETAIL,
+} from './actionTypes';
 import { loadingStart, loadingStop } from '../actions';
 import { APIUrls, getFormBodyMultipart, getToken } from '../helpers';
 import { setMessage, setError } from './alert';
@@ -48,14 +52,45 @@ export function addProduct(formData) {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         if (data.success) {
-          console.log('working');
           dispatch(setMessage('successful', 'Product Added'));
         } else {
           dispatch(setError('Error', 'Error in adding Product'));
         }
       });
     await dispatch(loadingStop());
+  };
+}
+
+function setProductDetail(product) {
+  return {
+    type: SET_PRODUCT_DETAIL,
+    product,
+  };
+}
+
+// getting detail of product with product id
+export function getProductDetail(id) {
+  return async (dispatch) => {
+    await dispatch(loadingStart());
+    const url = APIUrls.getProductDetail(id);
+    await fetch(url, {
+      method: 'GET',
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          dispatch(setProductDetail(data.data.product));
+        } else {
+          dispatch(setError('Error', 'Error in fetching Product Detail'));
+        }
+      });
+    await dispatch(loadingStop());
+  };
+}
+
+export function clearProductDetail() {
+  return {
+    type: CLEAR_PRODUCT_DETAIL,
   };
 }

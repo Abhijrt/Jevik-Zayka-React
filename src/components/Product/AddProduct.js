@@ -42,11 +42,35 @@ class AddProduct extends Component {
       errorMessageAlert(error.title, error.detail);
       dispatch(clearError());
       this.formRef.current.reset();
+      this.setState({
+        title: '',
+        category: 'Fruits',
+        marked_price: '',
+        selling_price: '',
+        sold_by: '',
+        stock_quantity: {
+          kilogram: 0,
+          gram: 0,
+        },
+        product_image: null,
+      });
     }
     if (message != null) {
       successMessageAlert(message.title, message.detail);
       dispatch(clearMessage());
       this.formRef.current.reset();
+      this.setState({
+        title: '',
+        category: 'Fruits',
+        marked_price: '',
+        selling_price: '',
+        sold_by: '',
+        stock_quantity: {
+          kilogram: 0,
+          gram: 0,
+        },
+        product_image: null,
+      });
     }
   }
 

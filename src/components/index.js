@@ -19,6 +19,7 @@ import AddProduct from './Product/AddProduct';
 import Products from './Product/Products';
 import Fruits from './Product/Fruits';
 import Vegetables from './Product/Vegetables';
+import ProductDetail from './Product/ProductDetail';
 
 //exporting all the components from here
 export {
@@ -44,4 +45,5 @@ export {
   Products,
   Fruits,
   Vegetables,
+  ProductDetail,
 };

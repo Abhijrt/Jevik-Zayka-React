@@ -8,4 +8,6 @@ export const APIUrls = {
   verifyAccountURL: (token) => `${API_ROOT}/verify-email/verify/${token}`,
   fetchProducts: () => `${API_ROOT}/products/get-products`,
   addProduct: () => `${API_ROOT}/products/add-product`,
+  getProductDetail: (product_id) =>
+    `${API_ROOT}/products/product-detail/${product_id}`,
 };

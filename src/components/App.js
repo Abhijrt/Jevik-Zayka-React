@@ -21,6 +21,7 @@ import {
   AddProduct,
   Fruits,
   Vegetables,
+  ProductDetail,
 } from './';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { signInSuccess } from '../actions';
@@ -67,6 +68,7 @@ class App extends Component {
               <Route path="/contact" component={ContactUs} />
               <Route path="/verification" component={Verification} />
               <Route path="/forgetpassword" component={ForgetPassword} />
+              <Route path="/product/:product_id" component={ProductDetail} />
               <Route
                 path="/verifyemail/:verification_token"
                 component={VerifyEmail}
