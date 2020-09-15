@@ -4,9 +4,10 @@
   justify-content: center;
   align-items: center;
   width: 300px;
-  height: 380px;
+  height: 410px;
   border: 0.3px solid #8080801a;
-  background-color: white;
+  background-color: whitesmoke;
+  padding-bottom: 10px;
 
   .container {
     height: 92%;
@@ -125,5 +126,11 @@
     // styles related to container of product detail
     .product-item-detail-container {
     }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .product-item-container {
+    border: none;
   }
 }

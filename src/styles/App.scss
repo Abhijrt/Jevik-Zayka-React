@@ -14,7 +14,13 @@
     width: 100%;
     margin: 0;
     padding: 0;
-    background-color: #5ebcb321;
+    background-color: whitesmoke;
+  }
+
+  @media screen and (max-width: 500px) {
+    .app-background {
+      background-color: whitesmoke;
+    }
   }
 
   .blank-progress-bar {
@@ -57,3 +63,4 @@
 @import './Product/Product.scss';
 @import './Product/ProductItem.scss';
 @import './Product/ProductDetail.scss';
+@import './Profile/Profile.scss';

@@ -69,7 +69,7 @@ class ProductDetail extends Component {
             </div>
             <div className="rating">
               <div>Rating</div>
-              <div>
+              <div className="star">
                 <i className="fa fa-star" aria-hidden="true" key="1"></i>
                 <i className="fa fa-star" aria-hidden="true" key="2"></i>
                 <i className="fa fa-star" aria-hidden="true" key="3"></i>
@@ -77,7 +77,7 @@ class ProductDetail extends Component {
                 <i className="fa fa-star" aria-hidden="true" key="5"></i>
               </div>
             </div>
-            <div>
+            <div className="quantity-container">
               Quantity
               <select name="qty">
                 <option value="250" key="250">
