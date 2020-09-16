@@ -1,10 +1,69 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { successMessageAlert, errorMessageAlert } from '../../helpers';
+import { clearError, clearMessage, loadingStop } from '../../actions';
 
 // rendering profile component
 class Profile extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: this.props.user,
+      editable: null,
+    };
+  }
+  componentDidMount() {
+    const { error, dispatch, message, isLoading } = this.props;
+    if (message != null) {
+      successMessageAlert(message.title, message.detail);
+      dispatch(clearMessage());
+    }
+
+    if (error != null) {
+      errorMessageAlert('Registration Error', error);
+      dispatch(clearError());
+    }
+    if (isLoading === true) {
+      dispatch(loadingStop());
+    }
+  }
+
+  // to set edit mode to on
+  handleEditButton = (editable) => {
+    this.setState({
+      editable: editable,
+    });
+  };
+
+  handleChange = (label, value) => {
+    if (label === 'firstName') {
+      this.setState({
+        user: { ...this.state.user, first_name: value },
+      });
+    } else if (label === 'lastName') {
+      this.setState({
+        user: { ...this.state.user, last_name: value },
+      });
+    } else if (label === 'email') {
+      this.setState({
+        user: { ...this.state.user, email: value },
+      });
+    } else if (label === 'mobileNumber') {
+      this.setState({
+        user: { ...this.state.user, mobile_number: value },
+      });
+    }
+  };
+
+  // to cancel edit mode
+  handleCancelButton = () => {
+    this.setState({ editable: null, user: this.props.user });
+  };
+
   render() {
-    const { email, first_name, last_name, mobile_number } = this.props.user;
+    const { editable } = this.state;
+    const { first_name, last_name, email, mobile_number } = this.state.user;
+    console.log(editable, 'editable');
     return (
       <div className="user-profile-container">
         <div className="image-container">
@@ -14,34 +73,142 @@ class Profile extends Component {
           />
         </div>
         <div className="detail">
-          <div>
+          {editable === 'firstName' ? (
             <div>
-              <div className="title">First Name</div>
-              <div className="value">{first_name}</div>
+              <div>
+                <input
+                  value={first_name}
+                  onChange={(e) => {
+                    this.handleChange('firstName', e.target.value);
+                  }}
+                />
+              </div>
+              <div className="link-container">
+                <span className="link">Save</span>
+                <span className="link" onClick={this.handleCancelButton}>
+                  Cancel
+                </span>
+              </div>
             </div>
-            <div className="edit">Edit</div>
-          </div>
-          <div>
+          ) : (
             <div>
-              <div className="title">Last Name</div>
-              <div className="value">{last_name}</div>
+              <div>
+                <div className="title">First Name</div>
+                <div className="value">{first_name}</div>
+              </div>
+
+              <div
+                className="link"
+                onClick={() => {
+                  this.handleEditButton('firstName');
+                }}
+              >
+                Edit
+              </div>
             </div>
-            <div className="edit">Edit</div>
-          </div>
-          <div>
+          )}
+          {editable === 'lastName' ? (
             <div>
-              <div className="title">Email </div>
-              <div className="value">{email}</div>
+              <div>
+                <input
+                  value={last_name}
+                  onChange={(e) => {
+                    this.handleChange('lastName', e.target.value);
+                  }}
+                />
+              </div>
+              <div className="link-container">
+                <span className="link">Save</span>
+                <span className="link" onClick={this.handleCancelButton}>
+                  Cancel
+                </span>
+              </div>
             </div>
-            <div className="edit">Edit</div>
-          </div>
-          <div>
+          ) : (
             <div>
-              <div className="title">Mobile Number</div>
-              <div className="value">{mobile_number}</div>
+              <div>
+                <div className="title">Last Name</div>
+                <div className="value">{last_name}</div>
+              </div>
+
+              <div
+                className="link"
+                onClick={() => {
+                  this.handleEditButton('lastName');
+                }}
+              >
+                Edit
+              </div>
             </div>
-            <div className="edit">Edit</div>
-          </div>
+          )}
+          {editable === 'email' ? (
+            <div>
+              <div>
+                <input
+                  value={email}
+                  onChange={(e) => {
+                    this.handleChange('email', e.target.value);
+                  }}
+                />
+              </div>
+              <div className="link-container">
+                <span className="link">Save</span>
+                <span className="link" onClick={this.handleCancelButton}>
+                  Cancel
+                </span>
+              </div>
+            </div>
+          ) : (
+            <div>
+              <div>
+                <div className="title">Email</div>
+                <div className="value">{email}</div>
+              </div>
+
+              <div
+                className="link"
+                onClick={() => {
+                  this.handleEditButton('email');
+                }}
+              >
+                Edit
+              </div>
+            </div>
+          )}
+          {editable === 'mobileNumber' ? (
+            <div>
+              <div>
+                <input
+                  value={mobile_number}
+                  onChange={(e) => {
+                    this.handleChange('mobileNumber', e.target.value);
+                  }}
+                />
+              </div>
+              <div className="link-container">
+                <span className="link">Save</span>
+                <span className="link" onClick={this.handleCancelButton}>
+                  Cancel
+                </span>
+              </div>
+            </div>
+          ) : (
+            <div>
+              <div>
+                <div className="title">Mobile Number</div>
+                <div className="value">{mobile_number}</div>
+              </div>
+
+              <div
+                className="link"
+                onClick={() => {
+                  this.handleEditButton('mobileNumber');
+                }}
+              >
+                Edit
+              </div>
+            </div>
+          )}
         </div>
       </div>
     );
@@ -52,6 +219,9 @@ class Profile extends Component {
 function mapStateToProps(state) {
   return {
     user: state.auth.user,
+    message: state.alert.message,
+    error: state.alert.error,
+    isLoading: state.progress.isLoading,
   };
 }
 
