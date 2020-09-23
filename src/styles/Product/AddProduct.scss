@@ -1,27 +1,96 @@
 .add-product-container {
   width: 45%;
   align-self: center;
-  border: 2px solid red;
   display: flex;
+  box-shadow: 0px 0px 4px 3px #b5b5b5;
   flex-direction: column;
+  border-radius: 5px;
   align-items: center;
   background-color: whitesmoke;
+  margin: 1% 0%;
+  padding: 2%;
+  border-radius: 20px;
 
   .heading {
     text-align: center;
     font-size: 3rem;
     font-weight: bolder;
-    padding: 2% 0%;
+    padding-top: 2%;
     color: #504c4c;
   }
 
   form {
-    height: 500px;
-    border: 2px solid black;
     width: 95%;
+
+    // add product button styles
+    .add-product-button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 61px;
+
+      button {
+        width: 90%;
+      }
+    }
+
+    // style for category container
+    .category-container {
+      display: flex;
+      font-size: 1rem;
+      font-weight: 600;
+      margin-left: 3.5%;
+      padding: 3% 0%;
+      align-items: center;
+
+      .category-heading {
+        width: 20%;
+      }
+
+      @media screen and (max-width: 600px) {
+        .category-heading {
+          width: 31%;
+        }
+      }
+
+      select {
+        background: lightgrey;
+        padding: 0.5%;
+        font-size: 1rem;
+        font-weight: 500;
+        border-radius: 5px;
+      }
+    }
+
+    // styles for product image upload contianer
+    .product-image-container {
+      margin-left: 3.5%;
+      font-weight: bold;
+      .product-image-heading {
+        margin-bottom: 1.5%;
+      }
+      input {
+        text-indent: 0;
+      }
+    }
+
+    // stock quantity input styles
+    .stock-quantity-container {
+      display: flex;
+      align-items: center;
+      font-size: 1rem;
+      font-weight: 600;
+      height: 55px;
+      .stock-quantity {
+        margin-top: 4%;
+        margin-left: 3.5%;
+        width: 73%;
+      }
+    }
   }
 }
 
+// media queries to maintain mail container width accross different sizes
 @media screen and (max-width: 1250px) {
   .add-product-container {
     width: 55%;
@@ -30,7 +99,7 @@
 
 @media screen and (max-width: 1050px) {
   .add-product-container {
-    width: 70%;
+    width: 65%;
   }
 }
 

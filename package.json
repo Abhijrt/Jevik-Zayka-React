@@ -38,7 +38,6 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://jevik-zayka.herokuapp.com",
   "devDependencies": {
     "node-sass": "^4.14.1"
   }

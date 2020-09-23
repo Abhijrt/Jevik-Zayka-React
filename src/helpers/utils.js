@@ -11,6 +11,16 @@ export function getFormBody(params) {
   return formBody.join('&');
 }
 
+// generating form body for multipart form data
+export function getFormBodyMultipart(params) {
+  let formData = new FormData();
+
+  for (let property in params) {
+    formData.append(property, params[property]);
+  }
+  console.log(formData, 'dd');
+  return formData;
+}
 // function to save token to local storage
 export function setToken(token) {
   localStorage.setItem('jaivik_token', token);

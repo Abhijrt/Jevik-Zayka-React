@@ -1,7 +1,7 @@
 import React, { Component, createRef } from 'react';
 import { Input } from '../../components';
 import { connect } from 'react-redux';
-import { signIn, clearMessage, clearError } from '../../actions';
+import { signIn, clearMessage, clearError, loadingStop } from '../../actions';
 import { Link, Redirect } from 'react-router-dom';
 import swal from 'sweetalert';
 import {
@@ -22,6 +22,10 @@ class SignIn extends Component {
 
   componentDidMount() {
     this.setState({ username: '', password: '' });
+    const { isLoading, dispatch } = this.props;
+    if (isLoading === true) {
+      dispatch(loadingStop());
+    }
   }
 
   componentDidUpdate() {
@@ -29,10 +33,12 @@ class SignIn extends Component {
     if (error != null) {
       errorMessageAlert('Error', error.detail);
       dispatch(clearError());
+      this.state.formRef.current.reset();
     }
     if (message != null) {
       successMessageAlert(message.title, 'Please Login to Continue');
       dispatch(clearMessage());
+      this.state.formRef.current.reset();
     }
   }
 
@@ -66,7 +72,6 @@ class SignIn extends Component {
       return;
     }
     this.props.dispatch(signIn(username, password));
-    // this.state.formRef.current.reset();
   };
 
   render() {
@@ -105,10 +110,10 @@ class SignIn extends Component {
           </div>
         </form>
         <div className="create-account unselectable">
-          <Link to="/signup">Create An Account</Link>
+          <Link to="/signup">Create Account</Link>
         </div>
         <div className="forget-password unselectable">
-          <Link to="/forgetpassword">Forget Password</Link>
+          <Link to="/forgetpassword">Forget Password..?</Link>
         </div>
       </div>
     );

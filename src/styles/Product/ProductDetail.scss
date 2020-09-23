@@ -1,0 +1,102 @@
+.product-detail-container {
+  align-self: center;
+  width: 99%;
+  height: 680px;
+  max-width: 500px;
+  background-color: whitesmoke;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 25px;
+
+  .container {
+    width: 90%;
+    color: navy;
+    font-family: 'Balsamiq Sans', cursive;
+    .img-container {
+      height: 60%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      img {
+        height: 95%;
+        width: 100%;
+      }
+    }
+
+    .detail-container {
+      margin-top: -10px;
+      > div {
+        border: 0.5px solid #d8cbcb;
+        background: #e6e6e638;
+        height: 50px;
+        font-size: 1.2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-family: 'Balsamiq Sans', cursive;
+        padding: 0% 3%;
+        font-weight: bold;
+      }
+      .title {
+        display: flex;
+        justify-content: center;
+        font-size: 2.5rem;
+        color: navy;
+        padding: 10%;
+      }
+
+      .price-container {
+        .price {
+          .selling-price {
+            padding-right: 5px;
+          }
+          .marked-price {
+            font-size: 0.8rem;
+            text-decoration: line-through;
+            color: #40b080;
+          }
+        }
+        .discount {
+          font-size: 1rem;
+          color: #40b080;
+        }
+      }
+      .rating {
+        .star {
+          color: #abab09;
+        }
+      }
+
+      .quantity-container {
+        select {
+          padding: 0.5% 5%;
+          border-radius: 5px;
+          background: white;
+          /* outline: none; */
+          border: 1px solid #08a992;
+          font-size: 0.9rem;
+
+          option:hover {
+            color: red;
+            background-color: #08a992;
+          }
+        }
+        select:focus {
+          outline: none;
+        }
+      }
+
+      .add-to-cart {
+        background-color: #62d2a2;
+        display: flex;
+        justify-content: center;
+        font-size: 2rem;
+        color: white;
+        cursor: pointer;
+      }
+      .add-to-cart:hover {
+        background-color: #007140;
+      }
+    }
+  }
+}

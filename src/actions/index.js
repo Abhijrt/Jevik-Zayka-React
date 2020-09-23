@@ -8,6 +8,12 @@ import {
 } from './auth';
 import { setMessage, clearMessage, setError, clearError } from './alert';
 import { loadingStart, loadingStop } from './progress';
+import {
+  fetchProducts,
+  addProduct,
+  getProductDetail,
+  clearProductDetail,
+} from './products';
 
 export {
   signIn,
@@ -22,4 +28,8 @@ export {
   setError,
   clearError,
   verifyAccount,
+  fetchProducts,
+  getProductDetail,
+  addProduct,
+  clearProductDetail,
 };
